@@ -1,0 +1,20 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<ul class="list-group" *ngIf="dataLoaded != false" style="text-align: center">
+  <li class="list-group-item"><h4>Müşteriler</h4></li>
+  <li class="list-group-item" *ngFor="let customer of customers">
+    {{
+      customer.firstName +
+        " " +
+        customer.lastName +
+        " (" +
+        customer.companyName +
+        ")"
+    }}
+  </li>
+</ul>

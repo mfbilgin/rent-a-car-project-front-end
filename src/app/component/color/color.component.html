@@ -1,0 +1,26 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-warning"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<ul class="list-group list-group-horizontal" *ngIf="dataLoaded == true">
+  <li
+    [class]="getAllColorClass()"
+    (click)="CleanCurrentColor()"
+    routerLink="/cars"
+  >
+    Tüm Araçlar
+  </li>
+
+  <li
+    [class]="getCurrentColorClass(color)"
+    (click)="setCurrentColor(color)"
+    *ngFor="let color of colors"
+    routerLink="cars/color/{{ color.colorId }}"
+  >
+    {{ color.colorName }}
+  </li>
+</ul>

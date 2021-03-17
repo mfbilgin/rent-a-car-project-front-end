@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4">
+    <div *ngFor="let car of cars" class="card" style="width: 18rem">
+      <div *ngFor="let image of images">
+        <img
+          *ngIf="car.carId == image.carId"
+          [src]="imageUrl + image.imagePath"
+          class=""
+          style="height: 100%; width: 100%; object-fit: contain"
+          [alt]="imageUrl + image.imagePath"
+        />
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">{{ car.descript }}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><mark>Id</mark> : {{ car.carId }}</li>
+        <li class="list-group-item">
+          <mark>Marka</mark> : {{ car.brandName }}
+        </li>
+        <li class="list-group-item"><mark>Renk</mark> : {{ car.colorName }}</li>
+        <li class="list-group-item">
+          <mark>Model</mark> : {{ car.modelYear }}
+        </li>
+        <li class="list-group-item">
+          <mark>Günlük Kira </mark>: {{ car.dailyPrice }}
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <a
+        routerLink="/cars/rent"
+        class="card-link btn btn-primary"
+        style="align-items: center"
+        >Kirala</a
+      >
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

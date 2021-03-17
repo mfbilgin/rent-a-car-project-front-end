@@ -1,0 +1,43 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-warning"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="card card-plain" *ngIf="dataLoaded != false">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title mt-0 style">Arabalar</h4>
+    <p class="card-category">
+      Detayını görmek istediğiniz aracın üzerine tıklayınız.
+    </p>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover" style="text-align: center">
+        <thead class="">
+          <th>Id</th>
+          <th>Marka</th>
+          <th>Renk</th>
+          <th>Model Yılı</th>
+          <th>Günlük Kira</th>
+          <th>Araç Modeli</th>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let car of cars"
+            style="text-align: center"
+            routerLink="/cars/cardetail/{{ car.carId }}"
+          >
+            <td>{{ car.carId }}</td>
+            <td>{{ car.brandName }}</td>
+            <td>{{ car.colorName }}</td>
+            <td>{{ car.modelYear }}</td>
+            <td>{{ car.dailyPrice }}</td>
+            <td>{{ car.descript }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
