@@ -5,23 +5,53 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<ul class="list-group" *ngIf="dataLoaded != false" style="text-align: center">
-  <li class="list-group-item">
-    <h4>Markalar</h4>
-  </li>
-  <li
-    routerLink="/cars"
-    [class]="getAllBrandClass()"
-    (click)="CleanCurrentBrand()"
+<div class="mb-3">
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="Marka Ara"
+  />
+</div>
+
+<p>
+  <a
+    class="btn btn-primary"
+    data-bs-toggle="collapse"
+    href="#multiCollapseExample1"
+    style="width: 100%"
+    role="button"
+    aria-expanded="false"
+    aria-controls="multiCollapseExample1"
+    >Markalar</a
   >
-    Tüm Arabalar
-  </li>
-  <li
-    (click)="setCurrentBrand(brand)"
-    *ngFor="let brand of brands"
-    [class]="getCurrentBrandClass(brand)"
-    routerLink="/cars/brand/{{ brand.brandId }}"
-  >
-    {{ brand.brandName }}
-  </li>
-</ul>
+</p>
+
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <ul
+        class="list-group"
+        *ngIf="dataLoaded != false"
+        style="text-align: center"
+      >
+        <li
+          routerLink="/cars"
+          [class]="getAllBrandClass()"
+          (click)="CleanCurrentBrand()"
+        >
+          Tüm Arabalar
+        </li>
+        <li
+          (click)="setCurrentBrand(brand)"
+          *ngFor="let brand of brands | brandFilterPipe: filterText"
+          [class]="getCurrentBrandClass(brand)"
+          routerLink="/cars/brand/{{ brand.brandId }}"
+        >
+          {{ brand.brandName }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

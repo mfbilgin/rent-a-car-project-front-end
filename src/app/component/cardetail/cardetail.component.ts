@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car/car';
 import { Image } from 'src/app/models/image/image';
 import { CarService } from 'src/app/services/car/car.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { ImageService } from 'src/app/services/image/image.service';
 
 @Component({
@@ -15,12 +17,15 @@ export class CardetailComponent implements OnInit {
   images: Image[] = [];
   ImagePaths: string[] = [];
   imageUrl = 'https://localhost:44380/';
+  defaultImageUrl = 'https://localhost:44380/';
   dataLoaded = false;
 
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
-    private ImageService: ImageService
+    private ImageService: ImageService,
+    private toastrService: ToastrService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -59,4 +64,11 @@ export class CardetailComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+  addToCart(car: Car) {
+    this.toastrService.success('Sepete Eklendi', car.descript);
+    this.cartService.addToCart(car);
+    console.log('/cars');
+  }
+
+  clicked() {}
 }

@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animation": "^4.0.0-beta.8",
     "@angular/animations": "~11.2.5",
     "@angular/common": "~11.2.5",
     "@angular/compiler": "~11.2.5",
@@ -22,6 +23,7 @@
     "bootstrap": "^5.0.0-beta2",
     "git": "^0.1.5",
     "jquery": "^3.6.0",
+    "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

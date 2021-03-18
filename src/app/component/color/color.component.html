@@ -5,22 +5,50 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
+<div class="mb-3">
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="Renk Ara"
+  />
+</div>
 
-<ul class="list-group list-group-horizontal" *ngIf="dataLoaded == true">
-  <li
-    [class]="getAllColorClass()"
-    (click)="CleanCurrentColor()"
-    routerLink="/cars"
+<p>
+  <a
+    class="btn btn-primary"
+    data-bs-toggle="collapse"
+    href="#multiCollapseExample1"
+    role="button"
+    style="width: 100%"
+    aria-expanded="false"
+    aria-controls="multiCollapseExample1"
+    >Renkler</a
   >
-    Tüm Araçlar
-  </li>
+</p>
 
-  <li
-    [class]="getCurrentColorClass(color)"
-    (click)="setCurrentColor(color)"
-    *ngFor="let color of colors"
-    routerLink="cars/color/{{ color.colorId }}"
-  >
-    {{ color.colorName }}
-  </li>
-</ul>
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <ul class="list-group list-group-horizontal" *ngIf="dataLoaded == true">
+        <li
+          [class]="getAllColorClass()"
+          (click)="CleanCurrentColor()"
+          routerLink="/cars"
+        >
+          Tüm Araçlar
+        </li>
+
+        <li
+          [class]="getCurrentColorClass(color)"
+          (click)="setCurrentColor(color)"
+          *ngFor="let color of colors | colorFilterPipe: filterText"
+          routerLink="/cars/color/{{ color.colorId }}"
+        >
+          {{ color.colorName }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

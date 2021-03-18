@@ -5,39 +5,77 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<div class="card card-plain" *ngIf="dataLoaded != false">
-  <div class="card-header card-header-danger">
-    <h4 class="card-title mt-0 style">Arabalar</h4>
-    <p class="card-category">
-      Detayını görmek istediğiniz aracın üzerine tıklayınız.
-    </p>
-  </div>
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-hover" style="text-align: center">
-        <thead class="">
-          <th>Id</th>
-          <th>Marka</th>
-          <th>Renk</th>
-          <th>Model Yılı</th>
-          <th>Günlük Kira</th>
-          <th>Araç Modeli</th>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let car of cars"
-            style="text-align: center"
-            routerLink="/cars/cardetail/{{ car.carId }}"
-          >
-            <td>{{ car.carId }}</td>
-            <td>{{ car.brandName }}</td>
-            <td>{{ car.colorName }}</td>
-            <td>{{ car.modelYear }}</td>
-            <td>{{ car.dailyPrice }}</td>
-            <td>{{ car.descript }}</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="row">
+  <!-- <div class="col-md-4">
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Markalar</option>
+      <option *ngFor="let brand of brands">{{ brand.brandName }}</option>
+    </select>
+    <br />
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Renkler</option>
+      <option value="brand.brandId" *ngFor="let color of colors">
+        {{ color.colorName }}
+      </option>
+    </select>
+  </div> -->
+  <div class="col-md-12">
+    <div class="card card-plain" *ngIf="dataLoaded != false">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title mt-0 style">Arabalar</h4>
+        <p class="card-category">
+          Detayını görmek istediğiniz aracın üzerine tıklayınız.
+        </p>
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          [(ngModel)]="filterText"
+          class="form-control"
+          id="filterText"
+          placeholder="Araç Ara"
+        />
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover" style="text-align: center">
+            <thead class="">
+              <th>Id</th>
+              <th>Marka</th>
+              <th>Renk</th>
+              <th>Model Yılı</th>
+              <th>Günlük Kira</th>
+              <th>KDV'li Fiyat</th>
+              <th>Araç Modeli</th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let car of cars | filterPipe: filterText"
+                style="text-align: center"
+              >
+                <td>{{ car.carId }}</td>
+                <td>{{ car.brandName }}</td>
+                <td>{{ car.colorName }}</td>
+                <td>{{ car.modelYear }}</td>
+                <td>₺{{ car.dailyPrice }}</td>
+                <td>₺{{ car.dailyPrice | vatAdded: 18 }}</td>
+                <td>{{ car.descript }}</td>
+                <td>
+                  <button
+                    routerLink="/cars/cardetail/{{ car.carId }}"
+                    type="button"
+                    class="btn btn-warning"
+                  >
+                    Detaylar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

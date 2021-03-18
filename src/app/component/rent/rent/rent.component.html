@@ -1,3 +1,48 @@
-<div class="header">
-  <h3 class="header">Kiralama Opsiyonu Çok Yakında</h3>
+<div>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    routerLink="/cars"
+  ></button>
+</div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <input
+      id="carIdText"
+      class="form-control"
+      type="text"
+      placeholder="Kiralanacak Araç Id'si"
+      aria-label="input example"
+      style="width: 250px"
+    />
+    <br />
+    <input
+      id="userIdText"
+      class="form-control"
+      type="text"
+      placeholder="Kiralayanın Kullanıcı Id'si"
+      aria-label="input example"
+      style="width: 250px"
+    />
+    <br />
+    <input
+      id="customerIdText"
+      class="form-control"
+      type="text"
+      placeholder="Kiralayanın Müşteri Id'si"
+      aria-label="input example"
+      style="width: 250px"
+    />
+    <br />
+    <button
+      style="width: 250px"
+      type="button"
+      class="btn btn-warning"
+      (click)="addRental()"
+    >
+      Kirala
+    </button>
+  </div>
 </div>

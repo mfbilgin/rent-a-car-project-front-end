@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { BrandService } from 'src/app/services/brand/brand.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
@@ -11,6 +13,7 @@ export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   currentBrand: Brand;
   dataLoaded = false;
+  filterText = '';
 
   constructor(private brandService: BrandService) {}
 

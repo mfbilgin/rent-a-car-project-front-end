@@ -1,43 +1,71 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
 <div class="row">
-  <div class="col-md-4"></div>
+  <div class="col-md-2">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      routerLink="/cars"
+    ></button>
+  </div>
+</div>
+<div class="row">
+  <div *ngFor="let car of cars">
+    <div *ngFor="let image of images" style="float: left">
+      <img
+        *ngIf="car.carId == image.carId && image.imagePath != null"
+        [src]="imageUrl + image.imagePath"
+        class="my-image"
+        [alt]="imageUrl + image.imagePath"
+      />
+      <img
+        *ngIf="image.imagePath == null"
+        [src]="imageUrl + image.imagePath"
+        class="my-image"
+        [alt]="imageUrl + image.imagePath"
+      />
+    </div>
+  </div>
+</div>
 
+<div class="row" *ngIf="dataLoaded != false">
   <div class="col-md-4">
-    <div *ngFor="let car of cars" class="card" style="width: 18rem">
-      <div *ngFor="let image of images">
-        <img
-          *ngIf="car.carId == image.carId"
-          [src]="imageUrl + image.imagePath"
-          class=""
-          style="height: 100%; width: 100%; object-fit: contain"
-          [alt]="imageUrl + image.imagePath"
-        />
-      </div>
+    <div *ngFor="let car of cars" class="card" style="width: 945px">
+      <div *ngFor="let image of images" style="float: left"></div>
 
       <div class="card-body">
         <h5 class="card-title">{{ car.descript }}</h5>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><mark>Id</mark> : {{ car.carId }}</li>
+        <li class="list-group-item">Id : {{ car.carId }}</li>
+        <li class="list-group-item">Marka : {{ car.brandName }}</li>
+        <li class="list-group-item">Renk : {{ car.colorName }}</li>
+        <li class="list-group-item">Model : {{ car.modelYear }}</li>
+        <li class="list-group-item">Günlük Kira : ₺{{ car.dailyPrice }}</li>
         <li class="list-group-item">
-          <mark>Marka</mark> : {{ car.brandName }}
+          KDV'li Kira Fiyatı : ₺{{ car.dailyPrice | vatAdded: 18 }}
         </li>
-        <li class="list-group-item"><mark>Renk</mark> : {{ car.colorName }}</li>
         <li class="list-group-item">
-          <mark>Model</mark> : {{ car.modelYear }}
-        </li>
-        <li class="list-group-item">
-          <mark>Günlük Kira </mark>: {{ car.dailyPrice }}
+          <button
+            (click)="clicked()"
+            routerLink="/cars/rent"
+            type="button"
+            class="btn btn-warning"
+            style="width: 910px"
+          >
+            Kirala
+          </button>
         </li>
       </ul>
     </div>
-    <div class="card-body">
-      <a
-        routerLink="/cars/rent"
-        class="card-link btn btn-primary"
-        style="align-items: center"
-        >Kirala</a
-      >
-    </div>
+    <div class="card-body"></div>
+
     <div class="col-md-4"></div>
   </div>
 </div>
