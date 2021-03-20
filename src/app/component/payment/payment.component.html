@@ -1,3 +1,28 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    Kiralana Araç :
+    <strong>{{ carDetail.car.description }}</strong>
+  </li>
+  <li class="list-group-item">
+    Renk : <strong>{{ carDetail.car.colorName }}</strong>
+  </li>
+  <li class="list-group-item">
+    Model :<strong> {{ carDetail.car.modelYear }}</strong>
+  </li>
+  <li class="list-group-item">
+    KDV'li Kira Fiyatı :
+    <strong>
+      {{ carDetail.car.dailyPrice | vatAdded: 18 | currency: "₺" }}/Gün</strong
+    >
+  </li>
+  <li class="list-group-item">
+    Toplam Ödenecek Tutar :
+    <b class="text-success">{{
+      amountOfPayment | vatAdded: 18 | currency: "₺"
+    }}</b>
+  </li>
+</ul>
+
 <div class="card mt-4">
   <div class="card-header text-center">
     <strong>Ödeme İşlemi</strong>
@@ -53,8 +78,11 @@
   </div>
   <div class="card-footer">
     <div class="row">
-      <button (click)="pay()" class="btn btn-success">
-        <strong>{{ amountOfPayment | currency: "₺" }} </strong>Ödeme Yap
+      <button (click)="pay()" class="btn btn-primary">
+        Ödeme Yap
+        <strong class="text-warning"
+          >({{ amountOfPayment | vatAdded: 18 | currency: "₺" }})
+        </strong>
       </button>
     </div>
   </div>
