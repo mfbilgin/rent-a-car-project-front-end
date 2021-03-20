@@ -65,7 +65,7 @@ export class CarComponent implements OnInit {
     });
   }
   addToCart(car: Car) {
-    this.toastrService.success('Sepete Eklendi', car.descript);
+    this.toastrService.success('Sepete Eklendi', car.description);
     this.cartService.addToCart(car);
     console.log('/cars');
   }

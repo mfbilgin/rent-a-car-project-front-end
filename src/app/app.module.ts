@@ -11,15 +11,16 @@ import { CarComponent } from './component/car/car.component';
 import { RentalComponent } from './component/rental/rental.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardetailComponent } from './component/cardetail/cardetail.component';
-import { RentComponent } from './component/rent/rent/rent.component';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterPipePipe } from './pipes/car/filter-pipe.pipe';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CartSummaryComponent } from './component/cart-summary/cart-summary.component';
 import { BrandFilterPipePipe } from './pipes/brand/brand-filter-pipe.pipe';
 import { ColorFilterPipePipe } from './pipes/color/color-filter-pipe.pipe';
+import { CreditCardComponent } from './component/credit-card/credit-card.component';
+import { PaymentComponent } from './component/payment/payment.component';
+import { RentCarComponent } from './component/rent-car/rent-car.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +32,13 @@ import { ColorFilterPipePipe } from './pipes/color/color-filter-pipe.pipe';
     CarComponent,
     RentalComponent,
     CardetailComponent,
-    RentComponent,
     VatAddedPipe,
     FilterPipePipe,
-    CartSummaryComponent,
     BrandFilterPipePipe,
     ColorFilterPipePipe,
+    CreditCardComponent,
+    PaymentComponent,
+    RentCarComponent,
   ],
   imports: [
     BrowserModule,

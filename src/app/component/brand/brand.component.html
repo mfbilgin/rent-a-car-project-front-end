@@ -5,22 +5,12 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<div class="mb-3">
-  <input
-    type="text"
-    [(ngModel)]="filterText"
-    class="form-control"
-    id="filterText"
-    placeholder="Marka Ara"
-  />
-</div>
 
 <p>
   <a
-    class="btn btn-primary"
+    class="btn btn-primary changea"
     data-bs-toggle="collapse"
     href="#multiCollapseExample1"
-    style="width: 100%"
     role="button"
     aria-expanded="false"
     aria-controls="multiCollapseExample1"
@@ -31,6 +21,15 @@
 <div class="row">
   <div class="col">
     <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="mb-3">
+        <input
+          type="text"
+          [(ngModel)]="filterText"
+          class="form-control"
+          id="filterText"
+          placeholder="Marka Ara"
+        />
+      </div>
       <ul
         class="list-group"
         *ngIf="dataLoaded != false"

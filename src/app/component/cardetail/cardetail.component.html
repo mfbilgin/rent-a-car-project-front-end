@@ -14,58 +14,89 @@
       routerLink="/cars"
     ></button>
   </div>
-</div>
-<div class="row">
-  <div *ngFor="let car of cars">
-    <div *ngFor="let image of images" style="float: left">
-      <img
-        *ngIf="car.carId == image.carId && image.imagePath != null"
-        [src]="imageUrl + image.imagePath"
-        class="my-image"
-        [alt]="imageUrl + image.imagePath"
-      />
-      <img
-        *ngIf="image.imagePath == null"
-        [src]="imageUrl + image.imagePath"
-        class="my-image"
-        [alt]="imageUrl + image.imagePath"
-      />
-    </div>
-  </div>
-</div>
 
-<div class="row" *ngIf="dataLoaded != false">
-  <div class="col-md-4">
-    <div *ngFor="let car of cars" class="card" style="width: 945px">
-      <div *ngFor="let image of images" style="float: left"></div>
-
-      <div class="card-body">
-        <h5 class="card-title">{{ car.descript }}</h5>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Id : {{ car.carId }}</li>
-        <li class="list-group-item">Marka : {{ car.brandName }}</li>
-        <li class="list-group-item">Renk : {{ car.colorName }}</li>
-        <li class="list-group-item">Model : {{ car.modelYear }}</li>
-        <li class="list-group-item">Günlük Kira : ₺{{ car.dailyPrice }}</li>
-        <li class="list-group-item">
-          KDV'li Kira Fiyatı : ₺{{ car.dailyPrice | vatAdded: 18 }}
-        </li>
-        <li class="list-group-item">
-          <button
-            (click)="clicked()"
-            routerLink="/cars/rent"
-            type="button"
-            class="btn btn-warning"
-            style="width: 910px"
-          >
-            Kirala
-          </button>
-        </li>
-      </ul>
-    </div>
-    <div class="card-body"></div>
-
+  <div class="row" *ngIf="dataLoaded != false">
     <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="card" *ngIf="dataLoaded == true">
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div
+              *ngFor="let image of carDetail.carImages; let i = index"
+              [ngClass]="getSliderClassName(i)"
+            >
+              <img
+                src="{{ imageBasePath }}{{ image.imagePath }}"
+                class="d-block"
+                width="100%"
+                height="250px"
+                alt="..."
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="card-body">
+            <h5 class="card-title">{{ carDetail.car.description }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Id : {{ carDetail.car.carId }}</li>
+            <li class="list-group-item">
+              Marka : {{ carDetail.car.brandName }}
+            </li>
+            <li class="list-group-item">
+              Renk : {{ carDetail.car.colorName }}
+            </li>
+            <li class="list-group-item">
+              Model : {{ carDetail.car.modelYear }}
+            </li>
+            <li class="list-group-item">
+              Günlük Kira : ₺{{ carDetail.car.dailyPrice }}
+            </li>
+            <li class="list-group-item">
+              KDV'li Kira Fiyatı : ₺{{
+                carDetail.car.dailyPrice | vatAdded: 18
+              }}
+            </li>
+            <div
+              class="d-grid gap-2 mb-2"
+              *ngIf="carDetail.car.status == true"
+              style="width: 100%"
+            >
+              <app-rent-car [car]="carDetail.car"></app-rent-car>
+            </div>
+            <div
+              class="d-grid gap-2 mb-2"
+              *ngIf="carDetail.car.status == false"
+              style="width: 100%"
+            >
+              <div class="alert alert-info">Araç Henüz Teslim Edilmemiş</div>
+            </div>
+          </ul>
+        </div>
+        <div class="card-body"></div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
   </div>
 </div>
