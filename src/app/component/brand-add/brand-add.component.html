@@ -1,0 +1,39 @@
+<br />
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title text-danger" style="text-align: center">Marka Ekle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="brandAddForm">
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              class="form-control"
+              id="brandId"
+              formControlName="brandId"
+              placeholder=" "
+            />
+            <label for="brandId">Marka (ID)</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="string"
+              class="form-control"
+              id="brandName"
+              formControlName="brandName"
+              placeholder="Marka Adı"
+            />
+            <label for="brandName">Marka Adı</label>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-warning pull-rigth" (click)="add()">
+          Ekle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/models/customer/customer';
+import { CustomerDetail } from 'src/app/models/customer/customerDetial';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
-  customers: Customer[];
+  customers: CustomerDetail[];
   dataLoaded = false;
   constructor(private customerService: CustomerService) {}
 

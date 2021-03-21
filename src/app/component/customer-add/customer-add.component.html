@@ -1,0 +1,39 @@
+<br />
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title text-danger" style="text-align: center">Marka Ekle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="customerAddForm">
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              class="form-control"
+              id="userId"
+              formControlName="userId"
+              placeholder=" "
+            />
+            <label for="userId">Kullanıcı (ID)</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="companyName"
+              formControlName="companyName"
+              placeholder="Şirket Adı"
+            />
+            <label for="companyName">Şirket Adı</label>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-warning pull-rigth" (click)="add()">
+          Ekle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

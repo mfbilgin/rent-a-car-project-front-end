@@ -1,0 +1,39 @@
+<br />
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title text-danger" style="text-align: center">Marka Ekle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="imageAddForm">
+          <div class="form-floating mb-3">
+            <input
+              type="number"
+              class="form-control"
+              id="carId"
+              formControlName="carId"
+              placeholder=" "
+            />
+            <label for="carId">Araba (ID)</label>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="file"
+              class="form-control"
+              id="inputGroupFile03"
+              aria-describedby="inputGroupFileAddon03"
+              formControlName="imagePath"
+              aria-label="Upload"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-warning pull-rigth" (click)="add()">
+          Ekle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

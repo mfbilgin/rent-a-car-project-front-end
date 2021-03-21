@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Car } from 'src/app/models/car/car';
-import { Customer } from 'src/app/models/customer/customer';
+import { CarDetails } from 'src/app/models/car/carDetails';
+import { CustomerDetail } from 'src/app/models/customer/customerDetial';
 import { Rental } from 'src/app/models/rental/rental';
-import { RentalDetail } from 'src/app/models/rental/rentalDetail';
-import { CarService } from 'src/app/services/car/car.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { RentalService } from 'src/app/services/rental/rental.service';
 
@@ -22,11 +20,11 @@ export class RentCarComponent implements OnInit {
     private rentalService: RentalService,
     private toastr: ToastrService
   ) {}
-  customers: Customer[];
+  customers: CustomerDetail[];
   customerId: Number;
   rentDate: Date;
   returnDate: Date;
-  @Input() car: Car;
+  @Input() car: CarDetails;
   ngOnInit(): void {
     this.getCustomer();
   }

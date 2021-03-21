@@ -62,7 +62,7 @@
                 <td>{{ car.modelYear }}</td>
                 <td>₺{{ car.dailyPrice }}</td>
                 <td>₺{{ car.dailyPrice | vatAdded: 18 }}</td>
-                <td>{{ car.descript }}</td>
+                <td>{{ car.description }}</td>
                 <td>
                   <button
                     routerLink="/cars/cardetail/{{ car.carId }}"

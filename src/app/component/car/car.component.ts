@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
-import { Car } from 'src/app/models/car/car';
+import { CarDetails } from 'src/app/models/car/carDetails';
 import { Color } from 'src/app/models/color/color';
 import { BrandService } from 'src/app/services/brand/brand.service';
-import { CarService } from 'src/app/services/car/car.service';
-import { CartService } from 'src/app/services/cart/cart.service';
+import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
 import { ColorService } from 'src/app/services/color/color.service';
 @Component({
   selector: 'app-car',
@@ -14,17 +13,16 @@ import { ColorService } from 'src/app/services/color/color.service';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  cars: Car[];
+  cars: CarDetails[];
   brands: Brand[];
   colors: Color[];
   dataLoaded = false;
   filterText = '';
 
   constructor(
-    private carService: CarService,
+    private carDetailService: CarDetailService,
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
-    private cartService: CartService,
     private colorService: ColorService,
     private brandService: BrandService
   ) {}
@@ -44,14 +42,14 @@ export class CarComponent implements OnInit {
   }
 
   getCars() {
-    this.carService.getCar().subscribe((response) => {
+    this.carDetailService.getCar().subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
     });
   }
 
   getCarsByBrandId(brandId: number) {
-    this.carService.getCarsByBrand(brandId).subscribe((response) => {
+    this.carDetailService.getCarsByBrand(brandId).subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
       console.log('Getirildi');
@@ -59,15 +57,10 @@ export class CarComponent implements OnInit {
   }
 
   getCarsByColorId(colorId: number) {
-    this.carService.getCarsByColor(colorId).subscribe((response) => {
+    this.carDetailService.getCarsByColor(colorId).subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
     });
-  }
-  addToCart(car: Car) {
-    this.toastrService.success('Sepete Eklendi', car.description);
-    this.cartService.addToCart(car);
-    console.log('/cars');
   }
 
   getColor() {

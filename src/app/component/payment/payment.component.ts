@@ -1,11 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetailAndImagesDto } from 'src/app/models/car/carAndImagesDto';
 import { Rental } from 'src/app/models/rental/rental';
 import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
-import { CarService } from 'src/app/services/car/car.service';
-import { ImageService } from 'src/app/services/image/image.service';
 import { PaymentService } from 'src/app/services/payment/payment.service';
 
 @Component({
@@ -69,7 +67,14 @@ export class PaymentComponent implements OnInit {
       .pay(this.rental, this.amountOfPayment)
       .subscribe((response) => {
         this.router.navigate(['/cars']);
-        this.toastr.success(response.message.toString(), 'İşlem Başarılı');
+        if (this.amountOfPayment > 25000) {
+          this.toastr.error('Yetersiz Bakiye', 'İşlem Başarısız');
+        } else {
+          this.toastr.success(
+            'Ödeme Başarıyla Gerçekleştirildi',
+            'İşlem Başarılı'
+          );
+        }
       });
   }
 }
