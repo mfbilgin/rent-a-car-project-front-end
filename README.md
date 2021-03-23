@@ -1,3 +1,4 @@
+###### ~TR~
 # Araba Kiralama Projesi | Front-End
 **[Angular](https://angular.io/cli) ve [Bootstrap v5.0](https://getbootstrap.com/docs/5.0/getting-started/introduction/) Kullanılarak Hazırlanmıştır**
 ## İlgili Klasörler
