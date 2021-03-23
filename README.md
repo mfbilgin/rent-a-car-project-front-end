@@ -1,2 +1,2 @@
 # Araba Kiralma Projesi (Kamp Bitime Projesi)
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+** Katmanlı Mimari oluşturulup SOLID Prensiplerine sonuna kadar uyulmuştur :smile:
