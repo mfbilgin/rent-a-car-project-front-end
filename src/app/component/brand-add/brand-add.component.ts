@@ -22,7 +22,6 @@ export class BrandAddComponent implements OnInit {
 
   createBrandAddForm() {
     this.brandAddForm = this.formBuilder.group({
-      brandId: ['', Validators.required],
       brandName: ['', Validators.required],
     });
   }

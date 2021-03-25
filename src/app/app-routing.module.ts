@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrandAddComponent } from './component/brand-add/brand-add.component';
 import { CarAddComponent } from './component/car-add/car-add.component';
 import { CarImageAddComponent } from './component/car-image-add/car-image-add.component';
+import { CarUpdateComponent } from './component/car-update/car-update.component';
 import { CarComponent } from './component/car/car.component';
 import { CardetailComponent } from './component/cardetail/cardetail.component';
 import { ColorAddComponent } from './component/color-add/color-add.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'colors/add', component: ColorAddComponent },
   { path: 'customers/add', component: CustomerAddComponent },
   { path: 'images/add', component: CarImageAddComponent },
+  { path: 'cars/update', component: CarUpdateComponent },
 ];
 
 @NgModule({
