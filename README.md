@@ -26,3 +26,6 @@
 ![Ödeme Sayfası 1](https://i.hizliresim.com/gxwI1e.png)
 ![Ödeme Sayfası 2 ](https://i.hizliresim.com/qkjkPd.png)
 ![Ödeme Sayfası Pop-up](https://i.hizliresim.com/h9mbzH.png)
+![Profil Sayfası 1](https://i.hizliresim.com/es6wwi.png)
+![Profil Sayfası 2](https://i.hizliresim.com/UlUn9o.png)
+![Şifre Değiştirme Sayfası](https://i.hizliresim.com/k4qEDq.png)
