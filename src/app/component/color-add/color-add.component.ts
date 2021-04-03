@@ -22,7 +22,6 @@ export class ColorAddComponent implements OnInit {
 
   createColorAddForm() {
     this.colorAddForm = this.formBuilder.group({
-      colorId: ['', Validators.required],
       colorName: ['', Validators.required],
     });
   }
@@ -32,7 +31,7 @@ export class ColorAddComponent implements OnInit {
       let colorModel = Object.assign({}, this.colorAddForm.value);
       this.colorService.add(colorModel).subscribe(
         (response) => {
-          console.log(response);
+          //console.log(response);
           this.toastrService.success(response.message, 'Başarılı');
         },
         (responseError) => {

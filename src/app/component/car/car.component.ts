@@ -7,6 +7,7 @@ import { Color } from 'src/app/models/color/color';
 import { BrandService } from 'src/app/services/brand/brand.service';
 import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
 import { ColorService } from 'src/app/services/color/color.service';
+import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
@@ -17,17 +18,20 @@ export class CarComponent implements OnInit {
   brands: Brand[];
   colors: Color[];
   dataLoaded = false;
+  currentColorId: number;
+  currentBrandId: number;
   filterText = '';
 
   constructor(
     private carDetailService: CarDetailService,
     private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService,
     private colorService: ColorService,
-    private brandService: BrandService
+    private brandService: BrandService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
+    this.cleanLocalStorage();
     this.getBrand();
     this.getColor();
     this.activatedRoute.params.subscribe((params) => {
@@ -52,7 +56,6 @@ export class CarComponent implements OnInit {
     this.carDetailService.getCarsByBrand(brandId).subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
-      console.log('Getirildi');
     });
   }
 
@@ -74,5 +77,48 @@ export class CarComponent implements OnInit {
       this.brands = respone.data;
       this.dataLoaded = true;
     });
+  }
+  getCurrentBrandId(brand: Brand) {
+    if (brand.brandId == this.currentBrandId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  getCurrentColorId(color: Color) {
+    if (color.colorId == this.currentColorId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  cleanCurrentColor() {
+    if (this.currentColorId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  cleanCurrentBrand() {
+    if (this.currentBrandId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  setRouterLink() {
+    if (this.currentBrandId) {
+      return '/cars/brand/' + this.currentBrandId;
+    } else if (this.currentColorId) {
+      return '/cars/color/' + this.currentColorId;
+    } else {
+      return '/cars';
+    }
+  }
+  cleanLocalStorage() {
+    this.localStorageService.remove('passwordHash');
+    this.localStorageService.remove('passwordSalt');
+    this.localStorageService.remove('companyName');
   }
 }

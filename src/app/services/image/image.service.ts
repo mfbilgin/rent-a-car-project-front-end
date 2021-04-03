@@ -26,10 +26,14 @@ export class ImageService {
     let newPath = this.apiUrl + 'carimages/getall';
     return this.httpClient.get<ListResponseModel<Image>>(newPath);
   }
-  add(image: Image): Observable<ResponseModel> {
+  add(image: File): Observable<ResponseModel> {
+    var formData: FormData = new FormData();
+    formData.append('carId', '3');
+    formData.append('file', image);
+    console.log(image);
     return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'images/add',
-      image
+      this.apiUrl + 'CarImages/add',
+      formData
     );
   }
 }

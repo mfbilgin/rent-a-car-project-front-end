@@ -2,3 +2,17 @@
   text-align: center;
   color: darkgreen;
 }
+.mybtn {
+  border-radius: 6px;
+  color: whitesmoke;
+  height: 100%;
+  background-color: #048f83;
+  border: none;
+}
+.my-text {
+  color: #3851dd;
+}
+.mybtn:hover {
+  border-radius: 6px;
+  transform: scale(1.05);
+}

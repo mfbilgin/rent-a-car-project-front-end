@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/models/color/color';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ColorService } from 'src/app/services/color/color.service';
 
 @Component({
@@ -12,9 +13,14 @@ export class ColorComponent implements OnInit {
   currentColor: Color;
   dataLoaded = false;
   filterText = '';
-  constructor(private colorService: ColorService) {}
+  authenticated: boolean;
+  constructor(
+    private colorService: ColorService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    this.isAuthenticated();
     this.getColor();
   }
 
@@ -45,5 +51,12 @@ export class ColorComponent implements OnInit {
   }
   CleanCurrentColor() {
     this.currentColor = null;
+  }
+  isAuthenticated() {
+    if (this.authService.isAuthehticated()) {
+      this.authenticated = true;
+    } else {
+      this.authenticated = false;
+    }
   }
 }

@@ -1,0 +1,58 @@
+<body class="text-center">
+  <main class="form-signin">
+    <form [formGroup]="registerForm">
+      <h1 class="h3 mb-3 fw-normal">Lütfen Kayıt Oluşturunuz</h1>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          formControlName="firstName"
+          placeholder=" "
+        />
+        <label for="firstName">Ad</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          formControlName="lastName"
+          placeholder=" "
+        />
+        <label for="lastName">Soyad</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          placeholder=" "
+        />
+        <label for="email">E-Posta</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          placeholder=" "
+        />
+        <label for="password">Parola</label>
+      </div>
+
+      <button
+        class="w-100 btn btn-lg btn-primary"
+        type="submit"
+        (click)="register()"
+      >
+        Kayıt Ol
+      </button>
+    </form>
+    <p class="mt-5 mb-3 text-muted" routerLink="/login">
+      Zaten Kayıtlı Mısın? Giriş Yap
+    </p>
+  </main>
+</body>

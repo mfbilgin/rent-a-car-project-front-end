@@ -1,6 +1,6 @@
 <ul class="list-group list-group-flush">
   <li class="list-group-item">
-    Kiralana Araç :
+    Kiralanan Araç :
     <strong>{{ carDetail.car.description }}</strong>
   </li>
   <li class="list-group-item">
@@ -22,68 +22,185 @@
     }}</b>
   </li>
 </ul>
+<div class="row">
+  <div class="col-md-5" *ngIf="savedCards.length > 0">
+    <div class="card mt-4">
+      <div class="card-header text-center">Kayıtlı Kartlarım</div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let card of savedCards">
+            {{
+              card.cardNumber.replace(
+                card.cardNumber.slice(2, 14),
+                "************"
+              )
+            }}
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn my-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#cardModal"
+            >
+              Ödeme İçin Bu Kartı Kullan
+            </button>
 
-<div class="card mt-4">
-  <div class="card-header text-center">
-    <strong>Ödeme İşlemi</strong>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="inputbox mt-3">
-        <span>Kart sahibinin adı soyadı</span>
-        <input
-          type="text"
-          name="name"
-          class="form-control"
-          required="required"
-        />
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="inputbox mt-3 mr-2">
-            <span>Kart numarası</span>
-            <input
-              type="text"
-              name="name"
-              class="form-control"
-              required="required"
-            />
-            <i class="fa fa-credit-card"></i>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="d-flex flex-row">
-            <div class="inputbox mt-3 mr-2">
-              <span>Son kullanım tarihi</span>
-              <input
-                type="text"
-                name="name"
-                class="form-control"
-                required="required"
-              />
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="cardModal"
+              tabindex="-1"
+              aria-labelledby="cardModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="cardModalLabel">
+                      Bilgilendirme
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    {{
+                      card.cardNumber.replace(
+                        card.cardNumber.slice(2, 14),
+                        "************"
+                      )
+                    }}
+                    Numaralı Kart İle Ödeme Yapılacak
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Vazgeç
+                    </button>
+                    <button
+                      (click)="payWithSavedCard(card)"
+                      type="button"
+                      class="btn btn-primary"
+                    >
+                      Devam Et
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="inputbox mt-3 mr-2">
-              <span>Güvenlik kodu</span>
-              <input
-                type="text"
-                name="name"
-                class="form-control"
-                required="required"
-              />
-            </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <div class="card-footer">
-    <div class="row">
-      <button (click)="pay()" class="btn btn-primary">
-        Ödeme Yap
-        <strong class="text-warning"
-          >({{ amountOfPayment | vatAdded: 18 | currency: "₺" }})
-        </strong>
-      </button>
+  <div [class]="setCardClass()">
+    <div class="card mt-4">
+      <div class="card-header text-center">
+        <strong>Ödeme İşlemi</strong>
+      </div>
+      <div class="icons" style="text-align: center">
+        <img src="https://img.icons8.com/color/48/000000/visa.png" />
+        <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" />
+        <img src="https://img.icons8.com/color/48/000000/maestro.png" />
+      </div>
+      <form [formGroup]="paymentForm">
+        <div class="card-body">
+          <div class="row">
+            <div class="inputbox mt-3">
+              <span>Kart Sahibinin Adı</span>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                formControlName="cardholderName"
+                placeholder="Örn: Ali"
+              />
+            </div>
+            <div class="inputbox mt-3">
+              <span>Kart Sahibinin Soyadı</span>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                formControlName="cardholderLastName"
+                placeholder="Örn: Yılmaz"
+              />
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="inputbox mt-3 mr-2">
+                  <span>Kart Numarası</span>
+                  <input
+                    type="text"
+                    name="name"
+                    minlength="16"
+                    maxlength="16"
+                    formControlName="cardNumber"
+                    class="form-control"
+                    placeholder="Örn: 1234567891011121"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex flex-row">
+                  <div class="inputbox mt-3 mr-2">
+                    <span>Son Kullanım Tarihi</span>
+                    <input
+                      type="text"
+                      name="name"
+                      minlength="5"
+                      maxlength="5"
+                      class="form-control"
+                      formControlName="expirationDate"
+                      placeholder="Örn: 04/21"
+                    />
+                  </div>
+                  <div class="inputbox mt-3 mr-2">
+                    <span>Güvenlik Kodu</span>
+                    <input
+                      type="text"
+                      name="name"
+                      minlength="3"
+                      maxlength="4"
+                      class="form-control"
+                      formControlName="cvv"
+                      placeholder="Örn: 123"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="check" style="margin-left: 17px">
+        <div class="form-check form-switch">
+          <input
+            [(ngModel)]="isChecked"
+            class="form-check-input"
+            type="checkbox"
+            id="isChecked"
+            checked
+          />
+          <label class="form-check-label" for="isChecked">Kartımı kaydet</label>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <button (click)="pay()" class="btn my-btn">
+            Ödeme Yap
+            <strong class="text-warning"
+              >({{ amountOfPayment | vatAdded: 18 | currency: "₺" }})
+            </strong>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

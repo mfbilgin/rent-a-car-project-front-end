@@ -5,8 +5,8 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<div class="row">
-  <div class="col-md-2">
+<div class="row" *ngIf="dataLoaded != false">
+  <div class="col-md-4">
     <button
       type="button"
       class="btn-close"
@@ -14,11 +14,12 @@
       routerLink="/cars"
     ></button>
   </div>
-
-  <div class="row" *ngIf="dataLoaded != false">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <div class="card" *ngIf="dataLoaded == true">
+  <div class="col-md-4">
+    <div class="card" *ngIf="dataLoaded == true">
+      <div class="card-header">
+        Minimum Findex Puanı : {{ carDetail.car.minFindex }}
+      </div>
+      <div class="card-body">
         <div
           id="carouselExampleIndicators"
           class="carousel slide"
@@ -27,13 +28,13 @@
           <div class="carousel-inner">
             <div
               *ngFor="let image of carDetail.carImages; let i = index"
-              [ngClass]="getSliderClassName(i)"
+              [ngClass]="getSliderClass(i)"
             >
               <img
                 src="{{ imageBasePath }}{{ image.imagePath }}"
                 class="d-block"
                 width="100%"
-                height="250px"
+                height="100%"
                 alt="..."
               />
             </div>
@@ -55,10 +56,9 @@
           >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
           </button>
+        </div>
 
-          <div class="card-body">
-            <h5 class="card-title">{{ carDetail.car.description }}</h5>
-          </div>
+        <div class="card-body">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Id : {{ carDetail.car.carId }}</li>
             <li class="list-group-item">
@@ -80,23 +80,35 @@
             </li>
             <div
               class="d-grid gap-2 mb-2"
-              *ngIf="carDetail.car.status == true"
+              *ngIf="
+                carDetail.car.status == true &&
+                carDetail.car.minFindex <= user.findexPoint
+              "
               style="width: 100%"
             >
               <app-rent-car [car]="carDetail.car"></app-rent-car>
             </div>
             <div
               class="d-grid gap-2 mb-2"
-              *ngIf="carDetail.car.status == false"
+              *ngIf="carDetail.car.minFindex > user.findexPoint"
+              style="width: 100%"
+            >
+              <div class="alert alert-info">
+                Findex Puanınız ({{ user.findexPoint }}) Bu Araç İçin Yeterli
+                Değil.
+              </div>
+            </div>
+            <div
+              class="d-grid gap-2 mb-2"
+              *ngIf="carDetail.car.status != true"
               style="width: 100%"
             >
               <div class="alert alert-info">Araç Henüz Teslim Edilmemiş</div>
             </div>
           </ul>
         </div>
-        <div class="card-body"></div>
-        <div class="col-md-4"></div>
       </div>
     </div>
   </div>
+  <div class="col-md-4"></div>
 </div>

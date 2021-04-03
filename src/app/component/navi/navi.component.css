@@ -1,0 +1,11 @@
+.right {
+  position: absolute;
+  right: 50px;
+  top: 6px;
+}
+.colorlb {
+  background-color: lightblue;
+}
+.bg-mybg {
+  background-color: #1c9c92;
+}

@@ -10,6 +10,7 @@ import { ImageService } from 'src/app/services/image/image.service';
 })
 export class CarImageAddComponent implements OnInit {
   imageAddForm: FormGroup;
+  image: File = null;
   constructor(
     private formBuilder: FormBuilder,
     private imageService: ImageService,
@@ -23,14 +24,14 @@ export class CarImageAddComponent implements OnInit {
   createImageAddForm() {
     this.imageAddForm = this.formBuilder.group({
       carId: ['', Validators.required],
-      imagePath: ['', Validators.required],
+      file: ['', Validators.required],
     });
   }
 
   add() {
     if (this.imageAddForm.valid) {
-      let imageModel = Object.assign({}, this.imageAddForm.value);
-      this.imageService.add(imageModel).subscribe(
+      let imageModel: FormGroup = Object.assign(this.imageAddForm);
+      this.imageService.add(this.imageAddForm.get('file').value).subscribe(
         (response) => {
           console.log(response);
           this.toastrService.success(response.message, 'Başarılı');
@@ -53,5 +54,8 @@ export class CarImageAddComponent implements OnInit {
     } else {
       this.toastrService.error('Formunuz Eksik', 'Dikkat');
     }
+  }
+  handle(event: any) {
+    console.log(event);
   }
 }

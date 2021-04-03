@@ -5,24 +5,79 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
+<br />
 <div class="row">
-  <!-- <div class="col-md-4">
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Markalar</option>
-      <option *ngFor="let brand of brands">{{ brand.brandName }}</option>
-    </select>
-    <br />
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Renkler</option>
-      <option value="brand.brandId" *ngFor="let color of colors">
-        {{ color.colorName }}
-      </option>
-    </select>
-  </div> -->
+  <div class="col-md-12" *ngIf="dataLoaded == true">
+    <div class="row">
+      <div class="col-md-2">
+        <button routerLink="/cars" type="button" class="btn btn-primary mybtn">
+          Tüm Araçlar
+        </button>
+      </div>
+      <div class="col-md-3">
+        <select
+          [(ngModel)]="currentBrandId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option [selected]="cleanCurrentBrand()" [value]="undefined">
+            --- Bir marka seçiniz ---
+          </option>
+          <option
+            *ngFor="let brand of brands"
+            [value]="brand.brandId"
+            [selected]="getCurrentBrandId(brand)"
+          >
+            {{ brand.brandName }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button
+          [routerLink]="setRouterLink()"
+          type="button"
+          class="btn btn-primary mybtn"
+        >
+          Filtrele
+        </button>
+      </div>
+      <div class="col-md-3">
+        <select
+          [(ngModel)]="currentColorId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option [selected]="cleanCurrentColor()" [value]="undefined">
+            --- Bir renk seçiniz ---
+          </option>
+          <option
+            *ngFor="let color of colors"
+            [value]="color.colorId"
+            [selected]="getCurrentColorId(color)"
+          >
+            {{ color.colorName }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button
+          [routerLink]="setRouterLink()"
+          type="button"
+          class="btn btn-primary mybtn"
+        >
+          Filtrele
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-12">
-    <div class="card card-plain" *ngIf="dataLoaded != false">
+    <br />
+
+    <div class="card card-plain" *ngIf="dataLoaded == true">
       <div class="card-header card-header-danger">
-        <h4 class="card-title mt-0 style">Arabalar</h4>
+        <h4 class="card-title mt-0 style my-text">Arabalar</h4>
         <p class="card-category">
           <b>Resimleri Görmek</b> ve <b>Aracı Kiralamak</b> İçin Detay Sayfasına
           Gidiniz.
@@ -49,6 +104,7 @@
               <th>Günlük Kira</th>
               <th>KDV'li Fiyat</th>
               <th>Araç Modeli</th>
+              <th>Gereken Findex Puanı</th>
               <th></th>
             </thead>
             <tbody>
@@ -63,6 +119,7 @@
                 <td>₺{{ car.dailyPrice }}</td>
                 <td>₺{{ car.dailyPrice | vatAdded: 18 }}</td>
                 <td>{{ car.description }}</td>
+                <td>{{ car.minFindex }}</td>
                 <td>
                   <button
                     routerLink="/cars/cardetail/{{ car.carId }}"
