@@ -20,7 +20,7 @@
 
 ![Giriş Sayfası](https://i.hizliresim.com/YzqQOi.png)
 ![Detay Sayfası 1](https://i.hizliresim.com/XSgKhl.png)
-![Detay Sayfası 2](https://i.hizliresim.com/XSgKhl.png)
+![Detay Sayfası 2](https://i.hizliresim.com/6UXOp8.png)
 ![Detay Sayfası 3](https://i.hizliresim.com/8MT1ag.png)
 ![Kiralama Ekranı](https://i.hizliresim.com/bmxXjK.png)
 ![Ödeme Sayfası 1](https://i.hizliresim.com/gxwI1e.png)
