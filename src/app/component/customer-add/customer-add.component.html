@@ -1,9 +1,17 @@
 <br />
 <div class="content">
   <div class="col-md-12">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      routerLink="/profile"
+    ></button>
     <div class="card">
       <div class="card-header">
-        <h5 class="title text-danger" style="text-align: center">Marka Ekle</h5>
+        <h5 class="title text-danger" style="text-align: center">
+          Müşteri Formu
+        </h5>
       </div>
       <div class="card-body">
         <form [formGroup]="customerAddForm">
@@ -14,6 +22,7 @@
               id="userId"
               formControlName="userId"
               placeholder=" "
+              readonly
             />
             <label for="userId">Kullanıcı (ID)</label>
           </div>

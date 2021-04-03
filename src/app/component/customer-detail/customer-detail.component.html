@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row" *ngIf="customer.length > 0">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title text-primary" style="text-align: center">
+            Müşteri Bilgileri
+          </h5>
+        </div>
+        <div class="card-body" *ngFor="let customer of customer">
+          <form [formGroup]="customerUpdateForm">
+            <div class="mb-3">
+              <label for="userId" class="form-label">Kullanıcı Id</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="userId"
+                id="userId"
+                placeholder="{{ customer.userId }}"
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="customerId" class="form-label">Müşteri Id</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="customerId"
+                id="customerId"
+                placeholder="{{ customer.customerId }}"
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="companyName" class="form-label">Şirket Adı</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="companyName"
+                id="companyName"
+                placeholder="{{ customer.companyName }}"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button
+            class="btn btn-fill btn-warning pull-rigth"
+            (click)="update()"
+          >
+            Güncelle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="customer.length == 0">
+    <app-customer-null></app-customer-null>
+  </div>
+</div>

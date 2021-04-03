@@ -6,29 +6,85 @@ import { CarImageAddComponent } from './component/car-image-add/car-image-add.co
 import { CarUpdateComponent } from './component/car-update/car-update.component';
 import { CarComponent } from './component/car/car.component';
 import { CardetailComponent } from './component/cardetail/cardetail.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { ColorAddComponent } from './component/color-add/color-add.component';
 import { CustomerAddComponent } from './component/customer-add/customer-add.component';
 import { CustomerComponent } from './component/customer/customer.component';
+import { LoginComponent } from './component/login/login.component';
 import { PaymentComponent } from './component/payment/payment.component';
+import { RegisterComponent } from './component/register/register.component';
 import { RentCarComponent } from './component/rent-car/rent-car.component';
 import { RentalComponent } from './component/rental/rental.component';
+import { UserDetailComponent } from './component/user-detail/user-detail.component';
+import { LoginGuard } from './guards/login.guard';
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: CarComponent },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: CarComponent,
+  },
   { path: 'cars', component: CarComponent },
-  { path: 'customers', component: CustomerComponent },
-  { path: 'cars/cardetail/:carId', component: CardetailComponent },
+  {
+    path: 'customers',
+    component: CustomerComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'cars/cardetail/:carId',
+    component: CardetailComponent,
+    canActivate: [LoginGuard],
+  },
+
   { path: 'cars/brand/:brandId', component: CarComponent },
   { path: 'cars/color/:colorId', component: CarComponent },
-  { path: 'cars/rent', component: PaymentComponent },
-  { path: 'rentals', component: RentalComponent },
-  { path: 'rentCar', component: RentCarComponent },
-  { path: 'payment/:rental', component: PaymentComponent },
-  { path: 'cars/add', component: CarAddComponent },
-  { path: 'brands/add', component: BrandAddComponent },
-  { path: 'colors/add', component: ColorAddComponent },
-  { path: 'customers/add', component: CustomerAddComponent },
-  { path: 'images/add', component: CarImageAddComponent },
-  { path: 'cars/update', component: CarUpdateComponent },
+  { path: 'cars/brand/:brandId/color/:colorId', component: CarComponent },
+
+  { path: 'cars/rent', component: PaymentComponent, canActivate: [LoginGuard] },
+  { path: 'rentals', component: RentalComponent, canActivate: [LoginGuard] },
+  { path: 'rentCar', component: RentCarComponent, canActivate: [LoginGuard] },
+  {
+    path: 'payment/:rental',
+    component: PaymentComponent,
+    canActivate: [LoginGuard],
+  },
+  { path: 'cars/add', component: CarAddComponent, canActivate: [LoginGuard] },
+  {
+    path: 'brands/add',
+    component: BrandAddComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'colors/add',
+    component: ColorAddComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'customers/add',
+    component: CustomerAddComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'images/add',
+    component: CarImageAddComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'cars/update',
+    component: CarUpdateComponent,
+    canActivate: [LoginGuard],
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'profile',
+    component: UserDetailComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'changePassword',
+    component: ChangePasswordComponent,
+    canActivate: [LoginGuard],
+  },
 ];
 
 @NgModule({

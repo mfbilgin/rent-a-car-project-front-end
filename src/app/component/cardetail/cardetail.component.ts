@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Car } from 'src/app/models/car/car';
 import { CarDetailAndImagesDto } from 'src/app/models/car/carAndImagesDto';
+import { User } from 'src/app/models/user/user';
 import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
 import { CarService } from 'src/app/services/car/car.service';
+import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
+import { RentalService } from 'src/app/services/rental/rental.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,16 +18,21 @@ export class CardetailComponent implements OnInit {
   constructor(
     private carDetailService: CarDetailService,
     private carService: CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private rentalService: RentalService,
+    private userService: UserService,
+    private localStorageService: LocalStorageService
   ) {}
 
   carDetail: CarDetailAndImagesDto;
+  user: User;
   dataLoaded = false;
   imageBasePath = environment.baseUrl;
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
         this.getCarDetail(params['carId']);
+        this.getUserById();
       }
     });
   }
@@ -36,7 +44,15 @@ export class CardetailComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
-  getSliderClassName(index: number) {
+
+  getUserById() {
+    this.userService
+      .getUserByUserId(Number(this.localStorageService.get('userId')))
+      .subscribe((response) => {
+        this.user = response.data;
+      });
+  }
+  getSliderClass(index: number) {
     if (index == 0) {
       return 'carousel-item active';
     } else {

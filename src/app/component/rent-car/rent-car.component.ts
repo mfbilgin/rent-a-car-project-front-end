@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetails } from 'src/app/models/car/carDetails';
-import { CustomerDetail } from 'src/app/models/customer/customerDetial';
+import { Customer } from 'src/app/models/customer/customer';
 import { Rental } from 'src/app/models/rental/rental';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
 import { RentalService } from 'src/app/services/rental/rental.service';
 
 @Component({
@@ -18,26 +19,34 @@ export class RentCarComponent implements OnInit {
     private router: Router,
     private customerService: CustomerService,
     private rentalService: RentalService,
-    private toastr: ToastrService
+    private toastrService: ToastrService,
+    private localStorageService: LocalStorageService
   ) {}
-  customers: CustomerDetail[];
+  customers: Customer[];
   customerId: Number;
   rentDate: Date;
   returnDate: Date;
+
   @Input() car: CarDetails;
   ngOnInit(): void {
-    this.getCustomer();
+    this.getCustomerByUserId(Number(this.localStorageService.get('userId')));
   }
 
-  getCustomer() {
-    this.customerService.getCustomer().subscribe((response) => {
-      this.customers = response.data;
-      //this.dataLoaded = true;
+  getCustomerByUserId(userId: number) {
+    this.customerService.getCustomerByUserId(userId).subscribe((response) => {
+      if (response.data.length == 0) {
+        this.toastrService.info(
+          'Araç Kiralayabilmek İçin Müşteri Formunu Doldurunuz',
+          'Dikkat'
+        );
+        this.router.navigate(['customers/add']);
+      } else {
+        this.customers = response.data;
+      }
     });
   }
   getRentMinDate() {
     var today = new Date();
-    //min="1980-01-01"
     today.setDate(today.getDate() + 1);
     return today.toISOString().slice(0, 10);
   }
@@ -51,18 +60,10 @@ export class RentCarComponent implements OnInit {
       rentDate: this.rentDate,
       returnDate: this.returnDate,
       carId: this.car.carId,
-      customerId: parseInt(this.customerId.toString()),
-      userId: parseInt(this.customerId.toString()),
+      customerId: parseInt(this.localStorageService.get('customerId')),
+      userId: parseInt(this.localStorageService.get('userId')),
     };
+    this.toastrService.info('Ödeme Sayfasına Yönlendiliyorsunuz');
     this.router.navigate(['/payment/', JSON.stringify(MyRental)]);
-    this.toastr.info(
-      'Ödeme sayfasına yönlendiriliyorsunuz...',
-      'Ödeme İşlemleri'
-    );
-    /*
-    this.rentalService.rentalCar(MyRental).subscribe(response => {
-      this.toastr.success(response.message.toString(), "Harika...");
-    })
-    */
   }
 }

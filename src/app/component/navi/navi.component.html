@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-mybg bg-gradient">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" routerLink="/">RentACar</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -20,24 +20,6 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/customers">Müşteriler</a>
         </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
         <li class="nav-item">
           <a
             class="nav-link"
@@ -48,15 +30,44 @@
           >
         </li>
       </ul>
-      <form class="d-flex">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex" *ngIf="Authenticated == false">
+        <button class="btn btn-danger" routerLink="/register">Kayıt Ol</button>
+        <button class="btn btn-primary" type="submit" routerLink="/login">
+          Giriş Yap
+        </button>
       </form>
+      <ul
+        class="navbar-nav me-auto mb-2 mb-lg-0"
+        *ngIf="Authenticated != false"
+      >
+        <li class="nav-item dropdown right">
+          <a
+            class="nav-link dropdown-toggle text-dark"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ user.firstName }}
+            {{ user.lastName }} (Findex : {{ user.findexPoint }})
+          </a>
+
+          <ul
+            class="dropdown-menu colorlb"
+            aria-labelledby="navbarDropdown"
+            style="background-color: lightblue"
+          >
+            <li class="colorl">
+              <a class="dropdown-item" routerLink="/profile">Profil</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" (click)="logOut()">Çıkış Yap</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
+<br />
+<br />
+<br />
