@@ -15,4 +15,14 @@
 - [Services](https://github.com/mfbilgin42/kamp-final-project-front-end/tree/main/src/app/services) : It is the part the connection with the API is provided.Confusion is avoided by implementation service in [Component](https://github.com/mfbilgin42/kamp-final-project-front-end/tree/main/src/app/component) after write the necessary method.
 - [Models](https://github.com/mfbilgin42/kamp-final-project-front-end/tree/main/src/app/models) : Data from the API is kept as a property from an interface on the Front-End and displayed to user in [Component](https://github.com/mfbilgin42/kamp-final-project-front-end/tree/main/src/app/component)
 - [Pipes](https://github.com/mfbilgin42/kamp-final-project-front-end/tree/main/src/app/pipes) : If we have a data and  we want using data differently can use the pipe.(For Example: If we have a price data and want add vat this price, we can use pipe)
+
+
+
 ![Giriş Sayfası](https://i.hizliresim.com/YzqQOi.png)
+![Detay Sayfası 1](https://hizliresim.com/XSgKhl.png)
+![Detay Sayfası 2](https://hizliresim.com/XSgKhl.png)
+![Detay Sayfası 3](https://hizliresim.com/8MT1ag.png)
+![Kiralama Ekranı](https://hizliresim.com/bmxXjK.png)
+![Ödeme Sayfası 1](https://hizliresim.com/gxwI1e.png)
+![Ödeme Sayfası 2 ](https://hizliresim.com/qkjkPd.png)
+![Ödeme Sayfası Pop-up](https://hizliresim.com/h9mbzH.png)
