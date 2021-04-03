@@ -19,10 +19,10 @@
 
 
 ![Giriş Sayfası](https://i.hizliresim.com/YzqQOi.png)
-![Detay Sayfası 1](https://hizliresim.com/XSgKhl.png)
-![Detay Sayfası 2](https://hizliresim.com/XSgKhl.png)
-![Detay Sayfası 3](https://hizliresim.com/8MT1ag.png)
-![Kiralama Ekranı](https://hizliresim.com/bmxXjK.png)
-![Ödeme Sayfası 1](https://hizliresim.com/gxwI1e.png)
-![Ödeme Sayfası 2 ](https://hizliresim.com/qkjkPd.png)
-![Ödeme Sayfası Pop-up](https://hizliresim.com/h9mbzH.png)
+![Detay Sayfası 1](https://i.hizliresim.com/XSgKhl.png)
+![Detay Sayfası 2](https://i.hizliresim.com/XSgKhl.png)
+![Detay Sayfası 3](https://i.hizliresim.com/8MT1ag.png)
+![Kiralama Ekranı](https://i.hizliresim.com/bmxXjK.png)
+![Ödeme Sayfası 1](https://i.hizliresim.com/gxwI1e.png)
+![Ödeme Sayfası 2 ](https://i.hizliresim.com/qkjkPd.png)
+![Ödeme Sayfası Pop-up](https://i.hizliresim.com/h9mbzH.png)
