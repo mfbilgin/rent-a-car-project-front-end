@@ -52,7 +52,6 @@ export class CardetailComponent implements OnInit {
       .getUserClaims(Number(this.localStorageService.get('userId')))
       .subscribe((response) => {
         this.claims = response.data;
-        console.log(this.claims);
       });
   }
 

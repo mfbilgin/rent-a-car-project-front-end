@@ -18,7 +18,8 @@ export class ImageService {
   }
 
   getImagesByBrandId(brandId: number): Observable<ListResponseModel<Image>> {
-    let newPath = this.apiUrl + 'carimages//' + brandId;
+    let newPath =
+      this.apiUrl + 'carimages/getimagesbybrandid?brandId=' + brandId;
     return this.httpClient.get<ListResponseModel<Image>>(newPath);
   }
 
@@ -33,5 +34,11 @@ export class ImageService {
 
     let newPath = this.apiUrl + 'carimages/add';
     return this.httpClient.post<ResponseModel>(newPath, formData);
+  }
+  delete(imageId: number): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      this.apiUrl + 'CarImages/delete',
+      imageId
+    );
   }
 }

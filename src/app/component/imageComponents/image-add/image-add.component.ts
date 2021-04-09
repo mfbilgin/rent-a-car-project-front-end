@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Car } from 'src/app/models/car/car';
+import { CarService } from 'src/app/services/car/car.service';
 import { ImageService } from 'src/app/services/image/image.service';
 
 @Component({
@@ -9,19 +12,27 @@ import { ImageService } from 'src/app/services/image/image.service';
   styleUrls: ['./image-add.component.css'],
 })
 export class ImageAddComponent implements OnInit {
+  cars: Car[];
   imageAddForm: FormGroup;
   imageFiles: File[];
   savedCarId: number;
   constructor(
     private imageService: ImageService,
+    private carService: CarService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.createCarImageAddForm();
+    this.getCars();
   }
-
+  getCars() {
+    this.carService.getCar().subscribe((response) => {
+      this.cars = response.data;
+    });
+  }
   createCarImageAddForm() {
     this.imageAddForm = this.formBuilder.group({
       carId: [this.savedCarId],
@@ -40,6 +51,10 @@ export class ImageAddComponent implements OnInit {
         this.imageService.add(this.savedCarId, this.imageFiles[i]).subscribe(
           (response) => {
             this.toastrService.success('Resim Eklendi', 'Başarılı');
+            this.router.navigate(['cars']);
+            setTimeout(function () {
+              location.reload();
+            }, 600);
           },
           (responseError) => {
             console.log(responseError);

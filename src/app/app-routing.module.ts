@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BrandAddComponent } from './component/brand-add/brand-add.component';
-import { CarAddComponent } from './component/car-add/car-add.component';
-import { CarUpdateComponent } from './component/car-update/car-update.component';
-import { CarComponent } from './component/car/car.component';
-import { CardetailComponent } from './component/cardetail/cardetail.component';
+import { BrandAddComponent } from './component/brandComponents/brand-add/brand-add.component';
+import { CarAddComponent } from './component/carComponents/car-add/car-add.component';
+import { CarUpdateComponent } from './component/carComponents/car-update/car-update.component';
+import { CarComponent } from './component/carComponents/car/car.component';
+import { CardetailComponent } from './component/carComponents/cardetail/cardetail.component';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
-import { ColorAddComponent } from './component/color-add/color-add.component';
-import { CustomerAddComponent } from './component/customer-add/customer-add.component';
-import { CustomerComponent } from './component/customer/customer.component';
-import { ImageAddComponent } from './component/image-add/image-add.component';
+import { ColorAddComponent } from './component/colorComponents/color-add/color-add.component';
+import { CustomerAddComponent } from './component/customerComponents/customer-add/customer-add.component';
+import { CustomerComponent } from './component/customerComponents/customer/customer.component';
+import { ImageAddComponent } from './component/imageComponents/image-add/image-add.component';
+import { ImageDeleteComponent } from './component/imageComponents/image-delete/image-delete.component';
 import { LoginComponent } from './component/login/login.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { RegisterComponent } from './component/register/register.component';
@@ -83,6 +84,11 @@ const routes: Routes = [
   {
     path: 'image/add',
     component: ImageAddComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'image/delete',
+    component: ImageDeleteComponent,
     canActivate: [LoginGuard],
   },
 ];

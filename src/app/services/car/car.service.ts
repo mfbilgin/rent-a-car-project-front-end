@@ -21,6 +21,19 @@ export class CarService {
       car
     );
   }
+  update(car: Car): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      this.apiUrl + 'cars/update',
+      car
+    );
+  }
+
+  delete(car: Car): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      this.apiUrl + 'cars/delete',
+      car
+    );
+  }
 
   getCar(): Observable<ListResponseModel<Car>> {
     return this.httpClient.get<ListResponseModel<Car>>(
@@ -28,15 +41,9 @@ export class CarService {
     );
   }
 
-  getCarById(carId: number): Observable<ListResponseModel<Car>> {
-    return this.httpClient.get<ListResponseModel<Car>>(
+  getCarById(carId: number): Observable<SingleResponseModel<Car>> {
+    return this.httpClient.get<SingleResponseModel<Car>>(
       this.apiUrl + 'Cars/getcarbyid?carId=' + carId
-    );
-  }
-  update(car: Car): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'cars/update',
-      car
     );
   }
 }

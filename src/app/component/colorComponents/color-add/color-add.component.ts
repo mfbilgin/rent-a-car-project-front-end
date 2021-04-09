@@ -32,7 +32,7 @@ export class ColorAddComponent implements OnInit {
       this.colorService.add(colorModel).subscribe(
         (response) => {
           //console.log(response);
-          this.toastrService.success(response.message, 'Başarılı');
+          this.toastrService.success('Eklendi', 'Başarılı');
         },
         (responseError) => {
           if (responseError.error.ValidationErrors.length > 0) {

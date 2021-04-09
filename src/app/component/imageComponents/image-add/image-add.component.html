@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem">
+        <div class="card-header">Araçlar</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let car of cars" class="list-group-item">
+            {{ car?.carId }} : {{ car?.descript }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="car-body">
+          <form [formGroup]="imageAddForm">
+            <div class="mb-3">
+              <div class="form-group">
+                <input
+                  style="width: 100%"
+                  formControlName="file"
+                  type="file"
+                  (change)="uploadFile($event)"
+                />
+                <br />
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-group">
+                <br />
+                <input
+                  style="width: 100%"
+                  placeholder="Araç Id'si"
+                  formControlName="carId"
+                  type="number"
+                  id="carId"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div>
+            <button
+              style="float: right"
+              class="btn btn-success"
+              (click)="addImage()"
+            >
+              <i class="bi bi-plus-circle"></i> Ekle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

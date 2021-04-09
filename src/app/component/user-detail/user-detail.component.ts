@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user/user';
-import { CustomerService } from 'src/app/services/customer/customer.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
