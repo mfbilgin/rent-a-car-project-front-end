@@ -18,7 +18,7 @@
 
 
 
-![Giriş Sayfası](https://i.hizliresim.com/YzqQOi.png)
+![Giriş Sayfası](https://i.hizliresim.com/6zOJ8i.png)
 ![Detay Sayfası 1](https://i.hizliresim.com/XSgKhl.png)
 ![Detay Sayfası 2](https://i.hizliresim.com/6UXOp8.png)
 ![Detay Sayfası 3](https://i.hizliresim.com/8MT1ag.png)
