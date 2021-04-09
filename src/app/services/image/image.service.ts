@@ -26,14 +26,12 @@ export class ImageService {
     let newPath = this.apiUrl + 'carimages/getall';
     return this.httpClient.get<ListResponseModel<Image>>(newPath);
   }
-  add(image: File): Observable<ResponseModel> {
-    var formData: FormData = new FormData();
-    formData.append('carId', '3');
-    formData.append('file', image);
-    console.log(image);
-    return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'CarImages/add',
-      formData
-    );
+  add(carId: number, imageFile: File): Observable<ResponseModel> {
+    const formData = new FormData();
+    formData.append('carId', carId.toString());
+    formData.append('file', imageFile);
+
+    let newPath = this.apiUrl + 'carimages/add';
+    return this.httpClient.post<ResponseModel>(newPath, formData);
   }
 }

@@ -32,7 +32,7 @@ export class BrandAddComponent implements OnInit {
       this.brandService.add(brandModel).subscribe(
         (response) => {
           console.log(response);
-          this.toastrService.success(response.message, 'Başarılı');
+          this.toastrService.success('Marka Eklendi', 'Başarılı');
         },
         (responseError) => {
           if (responseError.error.ValidationErrors.length > 0) {

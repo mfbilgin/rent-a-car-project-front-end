@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
+import { OperationClaim } from 'src/app/models/user/operationClaim';
 import { User } from 'src/app/models/user/user';
 
 @Injectable({
@@ -31,10 +32,15 @@ export class UserService {
     );
   }
   addFindexPoint(userId: number): Observable<ResponseModel> {
-    console.log(userId);
     return this.httpClient.post<ResponseModel>(
       this.apiUrl + 'users/addfindexpoint',
       userId
+    );
+  }
+
+  getUserClaims(userId: number): Observable<ListResponseModel<OperationClaim>> {
+    return this.httpClient.get<ListResponseModel<OperationClaim>>(
+      this.apiUrl + 'users/getclaims?userId=' + userId
     );
   }
 }

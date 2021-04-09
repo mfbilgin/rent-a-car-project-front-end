@@ -73,7 +73,7 @@ export class UserDetailComponent implements OnInit {
       ],
       status: [true, Validators.nullValidator],
       findexPoint: [
-        this.localStorageService.get('findexPoint'),
+        this.localStorageService.get('findexpoint'),
         Validators.nullValidator,
       ],
     });
@@ -82,6 +82,8 @@ export class UserDetailComponent implements OnInit {
   update() {
     if (this.updateUserForm.valid) {
       let userModel = Object.assign({}, this.updateUserForm.value);
+      console.log(userModel);
+      userModel.findexPoint = Number(userModel.findexPoint);
       userModel.userId = Number(userModel.userId);
       this.userService.update(userModel).subscribe((response) => {
         this.toastrService.info(response.message, 'Başarılı');

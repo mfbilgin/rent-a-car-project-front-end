@@ -78,37 +78,63 @@
                 carDetail.car.dailyPrice | vatAdded: 18
               }}
             </li>
-            <div
-              class="d-grid gap-2 mb-2"
-              *ngIf="
-                carDetail.car.status == true &&
-                carDetail.car.minFindex <= user.findexPoint
-              "
-              style="width: 100%"
-            >
-              <app-rent-car [car]="carDetail.car"></app-rent-car>
-            </div>
-            <div
-              class="d-grid gap-2 mb-2"
-              *ngIf="carDetail.car.minFindex > user.findexPoint"
-              style="width: 100%"
-            >
-              <div class="alert alert-info">
-                Findex Puanınız ({{ user.findexPoint }}) Bu Araç İçin Yeterli
-                Değil.
+            <div *ngFor="let claim of claims">
+              <div
+                class="d-grid gap-2 mb-2"
+                *ngIf="
+                  carDetail.car.status == true &&
+                  carDetail.car.minFindex <= user.findexPoint &&
+                  claim.operationClaimName != 'admin'
+                "
+                style="width: 100%"
+              >
+                <app-rent-car [car]="carDetail.car"></app-rent-car>
               </div>
-            </div>
-            <div
-              class="d-grid gap-2 mb-2"
-              *ngIf="carDetail.car.status != true"
-              style="width: 100%"
-            >
-              <div class="alert alert-info">Araç Henüz Teslim Edilmemiş</div>
+              <div
+                class="d-grid gap-2 mb-2"
+                *ngIf="carDetail.car.minFindex > user.findexPoint"
+                style="width: 100%"
+              >
+                <div class="alert alert-info">
+                  Findex Puanınız ({{ user.findexPoint }}) Bu Araç İçin Yeterli
+                  Değil.
+                </div>
+              </div>
+              <div
+                class="d-grid gap-2 mb-2"
+                *ngIf="carDetail.car.status != true"
+                style="width: 100%"
+              >
+                <div class="alert alert-info">Araç Henüz Teslim Edilmemiş</div>
+              </div>
             </div>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <br />
+    <br />
+    <div *ngFor="let claim of claims">
+      <button
+        *ngIf="claim.operationClaimName == 'admin'"
+        class="btn btn-success"
+        style="width: 100%"
+        routerLink="/cars/update/{{ carDetail.car.carId }}"
+      >
+        <i class="bi bi-pencil-square"> Güncelle</i>
+      </button>
+      <br />
+      <br />
+      <button
+        *ngIf="claim.operationClaimName == 'admin'"
+        style="width: 100%"
+        class="btn btn-danger"
+      >
+        <i class="bi bi-trash-fill"></i>
+        Sil
+      </button>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,10 @@
+<form [formGroup]="imageAddForm">
+  <div class="form-group">
+    <input formControlName="file" type="file" (change)="uploadFile($event)" />
+    <input formControlName="carId" type="number" id="carId" />
+    <label for="carId">Araba Id'si</label>
+  </div>
+</form>
+<div>
+  <button class="btn btn-success" (click)="addImage()">Ekle</button>
+</div>
