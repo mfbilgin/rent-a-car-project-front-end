@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { OperationClaim } from 'src/app/models/user/operationClaim';
 import { User } from 'src/app/models/user/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
@@ -12,6 +13,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class NaviComponent implements OnInit {
   user: User;
+  claims: OperationClaim[];
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -22,8 +24,16 @@ export class NaviComponent implements OnInit {
   ngOnInit(): void {
     this.isAuthenticated();
     this.getByUserId();
+    this.getClaims();
   }
-
+  getClaims() {
+    this.userService
+      .getUserClaims(Number(this.localStorageService.get('userId')))
+      .subscribe((response) => {
+        this.claims = response.data;
+        console.log(this.claims);
+      });
+  }
   isAuthenticated() {
     if (this.authService.isAuthehticated()) {
       this.Authenticated = true;

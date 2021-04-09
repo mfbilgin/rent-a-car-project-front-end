@@ -1,28 +1,38 @@
 <br />
 <div class="content">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="title text-danger" style="text-align: center">Marka Ekle</h5>
-      </div>
-      <div class="card-body">
-        <form [formGroup]="brandAddForm">
-          <div class="form-floating mb-3">
-            <input
-              type="string"
-              class="form-control"
-              id="brandName"
-              formControlName="brandName"
-              placeholder="Marka Adı"
-            />
-            <label for="brandName">Marka Adı</label>
-          </div>
-        </form>
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-fill btn-warning pull-rigth" (click)="add()">
-          Ekle
-        </button>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title text-success" style="text-align: center">
+            Marka Ekle
+          </h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="brandAddForm">
+            <div class="form-floating mb-3">
+              <input
+                type="string"
+                class="form-control"
+                id="brandName"
+                formControlName="brandName"
+                placeholder="Marka Adı"
+              />
+              <label for="brandName">Marka Adı</label>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button
+            style="float: right"
+            class="btn btn-fill btn-warning pull-rigth"
+            (click)="add()"
+          >
+            <i class="bi bi-plus-circle"></i>
+            Ekle
+          </button>
+        </div>
       </div>
     </div>
   </div>

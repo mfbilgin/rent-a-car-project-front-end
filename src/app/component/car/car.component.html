@@ -71,69 +71,56 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <br />
 
-    <div class="card card-plain" *ngIf="dataLoaded == true">
-      <div class="card-header card-header-danger">
-        <h4 class="card-title mt-0 style my-text">Arabalar</h4>
-        <p class="card-category">
-          <b>Resimleri Görmek</b> ve <b>Aracı Kiralamak</b> İçin Detay Sayfasına
-          Gidiniz.
-        </p>
-      </div>
-      <div class="mb-3">
-        <input
-          type="text"
-          [(ngModel)]="filterText"
-          class="form-control"
-          id="filterText"
-          placeholder="Araç Ara"
-        />
-      </div>
-
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-hover" style="text-align: center">
-            <thead class="">
-              <th>Id</th>
-              <th>Marka</th>
-              <th>Renk</th>
-              <th>Model Yılı</th>
-              <th>Günlük Kira</th>
-              <th>KDV'li Fiyat</th>
-              <th>Araç Modeli</th>
-              <th>Gereken Findex Puanı</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="let car of cars | filterPipe: filterText"
-                style="text-align: center"
-              >
-                <td>{{ car.carId }}</td>
-                <td>{{ car.brandName }}</td>
-                <td>{{ car.colorName }}</td>
-                <td>{{ car.modelYear }}</td>
-                <td>₺{{ car.dailyPrice }}</td>
-                <td>₺{{ car.dailyPrice | vatAdded: 18 }}</td>
-                <td>{{ car.description }}</td>
-                <td>{{ car.minFindex }}</td>
-                <td>
-                  <button
-                    routerLink="/cars/cardetail/{{ car.carId }}"
-                    type="button"
-                    class="btn btn-warning"
-                  >
-                    Detaylar
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<br />
+<div class="row mb-3 mt-2">
+  <div class="mb-3">
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="Araç Ara"
+    />
+  </div>
+  <div
+    class="card"
+    routerLink="/cars/cardetail/{{ car.carId }}"
+    style="margin: 7px; width: 24rem; margin-top: 10px"
+    *ngFor="let car of cars | filterPipe: filterText"
+  >
+    <div class="card-body">
+      <img
+        class="card-img-top"
+        *ngIf="car.imagePath == null"
+        src="{{ imageDefaultPath }}"
+        alt="{{ car.carId }}"
+        style="width: 100%"
+      />
+      <img
+        class="card-img-top"
+        *ngIf="car.imagePath != null"
+        src="{{ baseUrl + car.imagePath }}"
+        alt="{{ car.carId }}"
+        style="width: 100%; height: 225px"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ car.description }}</h5>
+    </div>
+    <div class="card-body" style="background-color: #ffd700">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item my-li">Marka : {{ car.brandName }}</li>
+        <li class="list-group-item my-li">Renk : {{ car.colorName }}</li>
+        <li class="list-group-item my-li">Model Yılı : {{ car.modelYear }}</li>
+        <li class="list-group-item my-li">
+          Günlük Fiyat : {{ car.dailyPrice }}
+        </li>
+        <li class="list-group-item my-li">
+          KDV'li Günlük Fiyat : {{ car.dailyPrice | vatAdded: 18 }}
+        </li>
+        <li class="list-group-item my-li">Model Yılı : {{ car.modelYear }}</li>
+      </ul>
     </div>
   </div>
 </div>

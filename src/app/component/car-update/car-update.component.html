@@ -1,39 +1,48 @@
-<br />
-<div class="content">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="title text-danger" style="text-align: center">
-          Araç Güncelle
-        </h5>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem">
+        <div class="card-header">Markalar</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let brand of brands" class="list-group-item">
+            {{ brand.brandId }} : {{ brand.brandName }}
+          </li>
+        </ul>
       </div>
-      <div class="card-body">
-        <form [formGroup]="carUpdateForm">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Bir Araba Seçiniz</option>
-            <option *ngFor="let car of cars">{{ car.descript }}</option>
-          </select>
-          <br />
-          <div class="form-floating mb-3">
-            <input
-              type="number"
-              class="form-control"
-              id="colorId"
-              formControlName="colorId"
-              placeholder="A"
-            />
-            <label for="colorId"></label>
-          </div>
-        </form>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title text-success" style="text-align: center">
+            Araç Güncelle
+          </h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="carUpdateForm">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Araç Id'si</label
+              >
+              <input
+                type="carId"
+                class="form-control"
+                formControlName="carId"
+                id="carId"
+                placeholder="{{ carId }}"
+              />
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="card-footer">
-        <button
-          class="btn btn-fill btn-danger pull-rigth"
-          (click)="test()"
-          style="width: 100%"
-        >
-          Güncelle
-        </button>
+    </div>
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem">
+        <div class="card-header">Markalar</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let color of colors" class="list-group-item">
+            {{ color.colorId }} : {{ color.colorName }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>

@@ -8,3 +8,4 @@ export class VatAddedPipe implements PipeTransform {
     return value + (value * rate) / 100;
   }
 }
+//@Created By Muhammet Bilgin

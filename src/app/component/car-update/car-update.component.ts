@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/models/brand/brand';
 import { Car } from 'src/app/models/car/car';
+import { Color } from 'src/app/models/color/color';
+import { BrandService } from 'src/app/services/brand/brand.service';
 import { CarService } from 'src/app/services/car/car.service';
+import { ColorService } from 'src/app/services/color/color.service';
 
 @Component({
   selector: 'app-car-update',
@@ -12,9 +16,14 @@ import { CarService } from 'src/app/services/car/car.service';
 })
 export class CarUpdateComponent implements OnInit {
   cars: Car[];
+  colors: Color[];
+  brands: Brand[];
   carUpdateForm: FormGroup;
+  carId: number;
   constructor(
     private carService: CarService,
+    private brandService: BrandService,
+    private colorService: ColorService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService
@@ -22,26 +31,41 @@ export class CarUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.CreateCarUpdateForm();
-    this.getCar();
+    this.getBrands();
+    this.getColors();
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['carId']) {
+        this.carId = params['carId'];
+        this.getCarById(params['carId']);
+      }
+    });
+  }
+  getBrands() {
+    this.brandService.getBrand().subscribe((response) => {
+      this.brands = response.data;
+    });
+  }
+  getColors() {
+    this.colorService.getColor().subscribe((response) => {
+      this.colors = response.data;
+    });
   }
 
-  getCar() {
-    this.carService.getCar().subscribe((response) => {
+  getCarById(carId: number) {
+    this.carService.getCarById(carId).subscribe((response) => {
       this.cars = response.data;
     });
   }
-  test() {
-    console.log(this.carUpdateForm);
-  }
   CreateCarUpdateForm() {
     this.carUpdateForm = this.formBuilder.group({
-      carId: ['', Validators.required],
+      carId: [{ value: this.carId, disabled: true }],
       brandId: ['', Validators.required],
       colorId: ['', Validators.required],
       modelYear: ['', Validators.required],
       dailyPrice: ['', Validators.required],
       descript: ['', Validators.required],
       brandName: ['', Validators.required],
+      minFindex: ['', Validators.required],
     });
   }
 

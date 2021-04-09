@@ -7,7 +7,9 @@ import { Color } from 'src/app/models/color/color';
 import { BrandService } from 'src/app/services/brand/brand.service';
 import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
 import { ColorService } from 'src/app/services/color/color.service';
+import { ImageService } from 'src/app/services/image/image.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
@@ -21,13 +23,16 @@ export class CarComponent implements OnInit {
   currentColorId: number;
   currentBrandId: number;
   filterText = '';
-
+  baseUrl = environment.baseUrl;
+  imageDefaultPath: string = this.baseUrl + '/images/default.jpg';
+  carId: number;
   constructor(
     private carDetailService: CarDetailService,
     private activatedRoute: ActivatedRoute,
     private colorService: ColorService,
     private brandService: BrandService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private carImageService: ImageService
   ) {}
 
   ngOnInit(): void {

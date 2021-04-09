@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetailAndImagesDto } from 'src/app/models/car/carAndImagesDto';
+import { OperationClaim } from 'src/app/models/user/operationClaim';
 import { User } from 'src/app/models/user/user';
 import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
 import { CarService } from 'src/app/services/car/car.service';
@@ -26,6 +27,7 @@ export class CardetailComponent implements OnInit {
 
   carDetail: CarDetailAndImagesDto;
   user: User;
+  claims: OperationClaim[];
   dataLoaded = false;
   imageBasePath = environment.baseUrl;
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class CardetailComponent implements OnInit {
       if (params['carId']) {
         this.getCarDetail(params['carId']);
         this.getUserById();
+        this.getClaims();
       }
     });
   }
@@ -43,6 +46,14 @@ export class CardetailComponent implements OnInit {
 
       this.dataLoaded = true;
     });
+  }
+  getClaims() {
+    this.userService
+      .getUserClaims(Number(this.localStorageService.get('userId')))
+      .subscribe((response) => {
+        this.claims = response.data;
+        console.log(this.claims);
+      });
   }
 
   getUserById() {

@@ -24,7 +24,6 @@ import { CarAddComponent } from './component/car-add/car-add.component';
 import { BrandAddComponent } from './component/brand-add/brand-add.component';
 import { ColorAddComponent } from './component/color-add/color-add.component';
 import { CustomerAddComponent } from './component/customer-add/customer-add.component';
-import { CarImageAddComponent } from './component/car-image-add/car-image-add.component';
 import { CarUpdateComponent } from './component/car-update/car-update.component';
 import { LoginComponent } from './component/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -33,6 +32,7 @@ import { UserDetailComponent } from './component/user-detail/user-detail.compone
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { CustomerDetailComponent } from './component/customer-detail/customer-detail.component';
 import { CustomerNullComponent } from './component/customer-null/customer-null.component';
+import { ImageAddComponent } from './component/image-add/image-add.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,6 @@ import { CustomerNullComponent } from './component/customer-null/customer-null.c
     BrandAddComponent,
     ColorAddComponent,
     CustomerAddComponent,
-    CarImageAddComponent,
     CarUpdateComponent,
     LoginComponent,
     RegisterComponent,
@@ -62,6 +61,7 @@ import { CustomerNullComponent } from './component/customer-null/customer-null.c
     ChangePasswordComponent,
     CustomerDetailComponent,
     CustomerNullComponent,
+    ImageAddComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,10 +9,77 @@
   background-color: #048f83;
   border: none;
 }
-.my-text {
-  color: #3851dd;
-}
+
 .mybtn:hover {
   border-radius: 6px;
   transform: scale(1.05);
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card {
+  display: grid;
+  grid-template-areas: "image" "text" "stats";
+  border-radius: 15px;
+  background: #3f3f3f;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  width: 300px;
+  height: 380px;
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.card {
+  display: grid;
+  border-radius: 15px;
+  background: #3f3f3f;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  width: 300px;
+  height: 100%;
+  cursor: pointer;
+  margin-top: 7px;
+}
+.card-image {
+  grid-area: image;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-size: cover;
+  height: 200px;
+  width: 300px;
+}
+.card-image img {
+  height: 200px;
+  width: 300px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: white;
+}
+
+.card-stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #f5ca29;
+  height: 40px;
+}
+.card-stats .stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  height: 40px;
+}
+.card-stats .value {
+  font-size: 22px;
+  font-weight: 900;
+  text-align: center;
+  color: black;
+  height: 40px;
 }
