@@ -22,6 +22,7 @@
 ![Detay Sayfası 1](https://i.hizliresim.com/XSgKhl.png)
 ![Detay Sayfası 2](https://i.hizliresim.com/6UXOp8.png)
 ![Detay Sayfası 3](https://i.hizliresim.com/8MT1ag.png)
+![Detay Sayfası 4 (admin)](https://i.hizliresim.com/BnQ88E.png)
 ![Kiralama Ekranı](https://i.hizliresim.com/bmxXjK.png)
 ![Ödeme Sayfası 1](https://i.hizliresim.com/gxwI1e.png)
 ![Ödeme Sayfası 2 ](https://i.hizliresim.com/qkjkPd.png)
