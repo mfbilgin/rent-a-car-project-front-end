@@ -20,7 +20,7 @@
 
 ![Giriş Sayfası](https://i.hizliresim.com/3CHxmU.png)
 ![Araç Ekleme](https://i.hizliresim.com/fXJscO.png)
-![Renk Ekleme]https://i.hizliresim.com/1M5zei.png)
+![Renk Ekleme](https://i.hizliresim.com/1M5zei.png)
 ![Marka Ekleme](https://i.hizliresim.com/wWOT44.png)
 ![Detay Sayfası 1](https://i.hizliresim.com/XSgKhl.png)
 ![Detay Sayfası 2](https://i.hizliresim.com/6UXOp8.png)
