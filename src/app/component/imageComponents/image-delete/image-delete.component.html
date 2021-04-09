@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem">
+        <div class="card-header">Araçlar</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let car of cars" class="list-group-item">
+            {{ car?.carId }} : {{ car?.descript }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="getCarIdForm">
+            <div class="mb-3">
+              <label for="carId" class="form-label">Araç Id'si</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="carId"
+                id="carId"
+                placeholder="Resmi Silinecek Araba Id'si"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button
+            (click)="getImageByCarId()"
+            class="btn btn-danger"
+            style="float: right"
+          >
+            <i class="bi bi-trash2-fill"></i> Sil
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

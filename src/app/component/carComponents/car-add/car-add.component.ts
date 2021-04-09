@@ -6,6 +6,7 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { Color } from 'src/app/models/color/color';
@@ -32,7 +33,7 @@ export class CarAddComponent implements OnInit {
     private carService: CarService,
     private brandService: BrandService,
     private colorService: ColorService,
-    private imageService: ImageService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +60,10 @@ export class CarAddComponent implements OnInit {
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
           this.savedCarId = response.data.carId;
-          this.addImage();
+          this.router.navigate(['cars']);
+          setTimeout(function () {
+            location.reload();
+          }, 600);
         },
         (responseError) => {
           if (responseError.error.ValidationErrors.length > 0) {
@@ -89,26 +93,5 @@ export class CarAddComponent implements OnInit {
     this.colorService.getColor().subscribe((response) => {
       this.colors = response.data;
     });
-  }
-
-  createCarImageAddForm() {
-    this.imageAddForm = this.formBuilder.group({
-      carId: [this.savedCarId],
-      file: ['', Validators.required],
-    });
-  }
-
-  uploadFile(event: any) {
-    this.imageFiles = event.target.files;
-  }
-
-  addImage() {
-    if (this.imageAddForm.valid) {
-      for (let i = 0; i < this.imageFiles.length; i++) {
-        this.imageService
-          .add(this.savedCarId, this.imageFiles[i])
-          .subscribe((response) => {});
-      }
-    }
   }
 }

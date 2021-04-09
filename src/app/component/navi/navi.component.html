@@ -37,8 +37,8 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            {{ user.firstName }}
-            {{ user.lastName }} (Findex : {{ user.findexPoint }})
+            {{ user?.firstName }}
+            {{ user?.lastName }} (Findex : {{ user?.findexPoint }})
           </a>
 
           <ul
@@ -65,19 +65,25 @@
             </li>
             <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
               <a class="dropdown-item" routerLink="/cars/add"
-                ><i class="bi bi-plus-circle"></i> Araç Ekle</a
+                ><i class="bi bi-plus-circle-fill"></i> Araç Ekle</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+              <a class="dropdown-item" routerLink="/image/add"
+                ><i class="bi bi-file-plus-fill"></i> Resim Ekle</a
               >
             </li>
             <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
               <a class="dropdown-item" routerLink="/brands/add"
-                ><i class="bi bi-plus-circle"></i> Marka Ekle</a
+                ><i class="bi bi-plus-circle-fill"></i> Marka Ekle</a
               >
             </li>
             <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
               <a class="dropdown-item" routerLink="/colors/add"
-                ><i class="bi bi-plus-circle"></i> Renk Ekle</a
+                ><i class="bi bi-plus-circle-fill"></i> Renk Ekle</a
               >
             </li>
+
             <li>
               <hr
                 class="dropdown-divider"

@@ -6,4 +6,5 @@ export interface Car {
   dailyPrice: number;
   descript: string;
   brandName: string;
+  minFindex: number;
 }

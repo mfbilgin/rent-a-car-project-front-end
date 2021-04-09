@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem">
+        <div class="card-header">Markalar</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let brand of brands" class="list-group-item">
+            {{ brand.brandId }} : {{ brand.brandName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title text-success" style="text-align: center">
+            Araç Güncelle
+          </h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="carUpdateForm">
+            <div class="mb-3">
+              <label for="carId" class="form-label">Araç Id'si</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="carId"
+                id="carId"
+                placeholder="{{ carId }}"
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="brandId" class="form-label">Marka Id'si</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="brandId"
+                id="brandId"
+                placeholder="{{ brandId }}"
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="colorId" class="form-label">Renk Id'si</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="colorId"
+                id="colorId"
+                placeholder="{{ colorId }}"
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="modelYear" class="form-label">Model Yılı</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="modelYear"
+                id="modelYear"
+                placeholder="{{ modelYear }}"
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="dailyPrice" class="form-label"
+                >Günlük Fiyat (KDV Hariç)</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                formControlName="dailyPrice"
+                id="dailyPrice"
+                placeholder="{{ dailyPrice }}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="descript" class="form-label">Marka ve Model</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="descript"
+                id="descript"
+                placeholder="{{ descript }}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="brandName" class="form-label">Markası</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="brandName"
+                id="brandName"
+                placeholder="{{ brandName }}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="minFindex" class="form-label"
+                >Minimum Findex Değeri</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                formControlName="minFindex"
+                id="minFindex"
+                placeholder="{{ minFindex }}"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-success" (click)="update()">Güncelle</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem">
+        <div class="card-header">Markalar</div>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let color of colors" class="list-group-item">
+            {{ color.colorId }} : {{ color.colorName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
