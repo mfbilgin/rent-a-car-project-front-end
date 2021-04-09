@@ -27,7 +27,7 @@
 ![Detay Sayfası 3](https://i.hizliresim.com/gypSJv.png)
 ![Detay Sayfası 4 (admin)](https://i.hizliresim.com/BnQ88E.png)
 ![Kiralama Ekranı](https://i.hizliresim.com/SjGhUP.png)
-![Ödeme Sayfası 1](https://i.hizliresim.com/SjGhUP.png)
+![Ödeme Sayfası 1](https://i.hizliresim.com/ZveYob.png)
 ![Ödeme Sayfası 2 ](https://i.hizliresim.com/X9bEr2.png)
 ![Ödeme Sayfası Pop-up](https://i.hizliresim.com/7eAiyJ.png)
 ![Navbar Admin](https://i.hizliresim.com/Im1gT3.png)
