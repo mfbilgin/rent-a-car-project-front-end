@@ -1,18 +1,20 @@
 <ul class="list-group list-group-flush">
   <li class="list-group-item">
     Kiralanan Araç :
-    <strong>{{ carDetail.car.description }}</strong>
+    <strong>{{ carDetail?.car?.description }}</strong>
   </li>
   <li class="list-group-item">
-    Renk : <strong>{{ carDetail.car.colorName }}</strong>
+    Renk : <strong>{{ carDetail?.car?.colorName }}</strong>
   </li>
   <li class="list-group-item">
-    Model :<strong> {{ carDetail.car.modelYear }}</strong>
+    Model :<strong> {{ carDetail?.car?.modelYear }}</strong>
   </li>
   <li class="list-group-item">
     KDV'li Kira Fiyatı :
     <strong>
-      {{ carDetail.car.dailyPrice | vatAdded: 18 | currency: "₺" }}/Gün</strong
+      {{
+        carDetail?.car?.dailyPrice | vatAdded: 18 | currency: "₺"
+      }}/Gün</strong
     >
   </li>
   <li class="list-group-item">
@@ -23,7 +25,7 @@
   </li>
 </ul>
 <div class="row">
-  <div class="col-md-5" *ngIf="savedCards.length > 0">
+  <div class="col-md-5" *ngIf="savedCards?.length > 0">
     <div class="card mt-4">
       <div class="card-header text-center">Kayıtlı Kartlarım</div>
       <div class="card-body">
@@ -193,7 +195,7 @@
       </div>
       <div class="card-footer">
         <div class="row">
-          <button (click)="pay()" class="btn my-btn">
+          <button (click)="SaveCard()" class="btn my-btn">
             Ödeme Yap
             <strong class="text-warning"
               >({{ amountOfPayment | vatAdded: 18 | currency: "₺" }})

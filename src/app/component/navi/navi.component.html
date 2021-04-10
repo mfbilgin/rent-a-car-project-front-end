@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
         </li>
       </ul>
 
@@ -68,11 +68,7 @@
                 ><i class="bi bi-plus-circle-fill"></i> Araç Ekle</a
               >
             </li>
-            <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
-              <a class="dropdown-item" routerLink="/image/add"
-                ><i class="bi bi-file-plus-fill"></i> Resim Ekle</a
-              >
-            </li>
+
             <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
               <a class="dropdown-item" routerLink="/brands/add"
                 ><i class="bi bi-plus-circle-fill"></i> Marka Ekle</a
@@ -83,7 +79,11 @@
                 ><i class="bi bi-plus-circle-fill"></i> Renk Ekle</a
               >
             </li>
-
+            <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+              <a class="dropdown-item" routerLink="/image/add"
+                ><i class="bi bi-upload"></i> Resim Yükle</a
+              >
+            </li>
             <li>
               <hr
                 class="dropdown-divider"

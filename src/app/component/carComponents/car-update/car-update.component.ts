@@ -96,6 +96,9 @@ export class CarUpdateComponent implements OnInit {
         console.log(response);
         this.toastrService.success(response.message, 'Başarılı');
         this.router.navigate(['cars']);
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
       },
       (responseError) => {
         if (responseError.error.ValidationErrors.length > 0) {

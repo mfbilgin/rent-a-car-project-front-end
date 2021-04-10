@@ -53,6 +53,19 @@
                 placeholder="{{ user.email }}"
               />
             </div>
+            <div *ngFor="let claim of claims">
+              <div class="mb-3" *ngIf="claim?.operationClaimName == 'admin'">
+                <label for="email" class="form-label">Rolünüz</label>
+                <input
+                  style="text-shadow: azure"
+                  type="text"
+                  class="form-control"
+                  id="claim"
+                  placeholder="{{ claim.operationClaimName | uppercase }}"
+                  readonly
+                />
+              </div>
+            </div>
           </form>
         </div>
         <div class="card-footer">

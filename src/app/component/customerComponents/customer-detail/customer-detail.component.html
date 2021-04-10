@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row" *ngIf="customer.length > 0">
+  <div class="row" *ngIf="customer?.length > 0">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
@@ -54,7 +54,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="customer.length == 0">
+  <div *ngIf="customer?.length == 0">
     <app-customer-null></app-customer-null>
   </div>
 </div>
