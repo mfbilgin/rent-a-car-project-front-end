@@ -123,7 +123,7 @@ export class PaymentComponent implements OnInit {
 
       var numberOfDays = Math.ceil(difference / (1000 * 3600 * 24));
 
-      this.amountOfPayment = numberOfDays * this.carDetail.car.dailyPrice;
+      this.amountOfPayment = numberOfDays * this.carDetail?.car?.dailyPrice;
     }
   }
 
@@ -148,7 +148,7 @@ export class PaymentComponent implements OnInit {
     }
   }
   setCardClass() {
-    if (this.savedCards.length > 0) {
+    if (this.savedCards?.length > 0) {
       return 'col-md-7';
     } else {
       return 'col-md-12';
@@ -168,6 +168,9 @@ export class PaymentComponent implements OnInit {
           this.addFindexPoint();
           this.SaveCard();
           this.router.navigate(['/cars']);
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
         },
         (responseError) => {
           this.toastrService.error(

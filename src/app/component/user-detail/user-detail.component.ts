@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { OperationClaim } from 'src/app/models/user/operationClaim';
 import { User } from 'src/app/models/user/user';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -15,6 +16,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserDetailComponent implements OnInit {
   reloaded = false;
+  claims: OperationClaim[];
   updateUserForm: FormGroup;
   user: User[];
   constructor(
@@ -29,6 +31,14 @@ export class UserDetailComponent implements OnInit {
     this.reload();
     this.createUserForm();
     this.getUserInfo();
+    this.getClaims();
+  }
+  getClaims() {
+    this.userService
+      .getUserClaims(Number(this.localStorageService.get('userId')))
+      .subscribe((response) => {
+        this.claims = response.data;
+      });
   }
 
   getUserInfo() {
@@ -99,7 +109,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   reload() {
-    if (this.reloaded) {
+    if (this.reloaded == true) {
       setTimeout(function () {
         location.reload();
       });
