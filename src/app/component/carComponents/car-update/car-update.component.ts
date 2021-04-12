@@ -27,6 +27,8 @@ export class CarUpdateComponent implements OnInit {
   descript: string = 'a';
   brandName: string = 'b';
   minFindex: number = 0;
+  dataLoaded = false;
+
   constructor(
     private carService: CarService,
     private brandService: BrandService,
@@ -50,17 +52,20 @@ export class CarUpdateComponent implements OnInit {
   getBrands() {
     this.brandService.getBrand().subscribe((response) => {
       this.brands = response.data;
+      this.dataLoaded = true;
     });
   }
   getColors() {
     this.colorService.getColor().subscribe((response) => {
       this.colors = response.data;
+      this.dataLoaded = true;
     });
   }
 
   getCarById(carId: number) {
     this.carService.getCarById(carId).subscribe((response) => {
       this.car = response.data;
+      this.dataLoaded = true;
       this.setDefaultCarValue();
     });
   }

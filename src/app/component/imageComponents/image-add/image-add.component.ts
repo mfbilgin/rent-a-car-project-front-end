@@ -16,6 +16,7 @@ export class ImageAddComponent implements OnInit {
   imageAddForm: FormGroup;
   imageFiles: File[];
   savedCarId: number;
+  dataLoaded = false;
   constructor(
     private imageService: ImageService,
     private carService: CarService,
@@ -31,6 +32,7 @@ export class ImageAddComponent implements OnInit {
   getCars() {
     this.carService.getCar().subscribe((response) => {
       this.cars = response.data;
+      this.dataLoaded = true;
     });
   }
   createCarImageAddForm() {

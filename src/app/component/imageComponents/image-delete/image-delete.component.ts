@@ -16,6 +16,8 @@ export class ImageDeleteComponent implements OnInit {
   getCarIdForm: FormGroup;
   images: Image[];
   cars: Car[];
+
+  dataLoaded = false;
   constructor(
     private imageService: ImageService,
     private carService: CarService,
@@ -32,6 +34,7 @@ export class ImageDeleteComponent implements OnInit {
   getAllCars() {
     this.carService.getCar().subscribe((response) => {
       this.cars = response.data;
+      this.dataLoaded = true;
     });
   }
 

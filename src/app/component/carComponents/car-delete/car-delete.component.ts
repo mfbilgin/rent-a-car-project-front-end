@@ -15,6 +15,7 @@ export class CarDeleteComponent implements OnInit {
   car: Car;
   images: Image[];
   imageId: number[];
+  dataLoaded = false;
   constructor(
     private carService: CarService,
     private imageService: ImageService,
@@ -34,6 +35,7 @@ export class CarDeleteComponent implements OnInit {
   getCarById(carId: number) {
     this.carService.getCarById(carId).subscribe((response) => {
       this.car = response.data;
+      this.dataLoaded = true;
     });
   }
 

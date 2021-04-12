@@ -1,1 +1,15 @@
-
+.card-image {
+  grid-area: image;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-size: cover;
+  height: 200px;
+  width: 300px;
+}
+.card-image img {
+  height: 200px;
+  width: 300px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: white;
+}

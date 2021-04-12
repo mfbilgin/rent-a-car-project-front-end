@@ -1,10 +1,4 @@
-<div
-  *ngIf="dataLoaded == false"
-  class="spinner-border text-warning"
-  role="status"
->
-  <span class="visually-hidden">Loading...</span>
-</div>
+<div class="loader" *ngIf="dataLoaded == false"></div>
 <br />
 <div class="row">
   <div class="col-md-12" *ngIf="dataLoaded == true">
@@ -73,7 +67,7 @@
 </div>
 
 <br />
-<div class="row mb-3 mt-2">
+<div class="row mb-3 mt-2" *ngIf="dataLoaded == true">
   <div class="mb-3">
     <input
       type="text"
@@ -86,19 +80,18 @@
   <div
     class="card"
     routerLink="/cars/cardetail/{{ car.carId }}"
-    style="margin: 7px; width: 24rem; margin-top: 10px"
     *ngFor="let car of cars | filterPipe: filterText"
   >
     <div class="card-body">
       <img
-        class="card-img-top"
+        class="card-img"
         *ngIf="car.imagePath == null"
         src="{{ imageDefaultPath }}"
         alt="{{ car.carId }}"
         style="width: 100%"
       />
       <img
-        class="card-img-top"
+        class="card-img"
         *ngIf="car.imagePath != null"
         src="{{ baseUrl + car.imagePath }}"
         alt="{{ car.carId }}"
@@ -108,7 +101,14 @@
     <div class="card-body">
       <h5 class="card-title">{{ car.description }}</h5>
     </div>
-    <div class="card-body" style="background-color: #ffd700">
+    <div
+      class="card-body"
+      style="
+        background-color: #ffd700;
+        border-radius: 15px;
+        margin-bottom: 15px;
+      "
+    >
       <ul class="list-group list-group-flush">
         <li class="list-group-item my-li">Marka : {{ car.brandName }}</li>
         <li class="list-group-item my-li">Renk : {{ car.colorName }}</li>

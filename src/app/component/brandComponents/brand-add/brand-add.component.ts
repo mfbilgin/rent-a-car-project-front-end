@@ -9,6 +9,7 @@ import { BrandService } from 'src/app/services/brand/brand.service';
   styleUrls: ['./brand-add.component.css'],
 })
 export class BrandAddComponent implements OnInit {
+  dataLoaded = false;
   brandAddForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,

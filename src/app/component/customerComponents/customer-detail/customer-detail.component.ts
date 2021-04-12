@@ -13,6 +13,7 @@ import { LocalStorageService } from 'src/app/services/localStorage/local-storage
 })
 export class CustomerDetailComponent implements OnInit {
   customer: Customer[];
+  dataLoaded = false;
   customerUpdateForm: FormGroup;
   constructor(
     private customerService: CustomerService,
@@ -48,6 +49,7 @@ export class CustomerDetailComponent implements OnInit {
       .getCustomerByUserId(Number(this.localStorageService.get('userId')))
       .subscribe((response) => {
         this.customer = response.data;
+        this.dataLoaded = true;
         response.data.forEach((customer) => {
           this.localStorageService.add('customerId', customer.customerId);
           this.localStorageService.add('companyName', customer.companyName);

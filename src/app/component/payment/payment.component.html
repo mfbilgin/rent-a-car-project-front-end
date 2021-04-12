@@ -1,4 +1,5 @@
-<ul class="list-group list-group-flush">
+<div class="loader" *ngIf="dataLoaded == false"></div>
+<ul class="list-group list-group-flush" *ngIf="dataLoaded != false">
   <li class="list-group-item">
     Kiralanan Araç :
     <strong>{{ carDetail?.car?.description }}</strong>
@@ -24,7 +25,7 @@
     }}</b>
   </li>
 </ul>
-<div class="row">
+<div class="row" *ngIf="dataLoaded != false">
   <div class="col-md-5" *ngIf="savedCards?.length > 0">
     <div class="card mt-4">
       <div class="card-header text-center">Kayıtlı Kartlarım</div>
@@ -37,18 +38,16 @@
                 "************"
               )
             }}
-            <!-- Button trigger modal -->
             <button
               type="button"
               class="btn my-btn"
-              data-bs-toggle="modal"
-              data-bs-target="#cardModal"
+              (click)="payWithSavedCard(card)"
+              x
             >
               Ödeme İçin Bu Kartı Kullan
             </button>
 
-            <!-- Modal -->
-            <div
+            <!-- <div
               class="modal fade"
               id="cardModal"
               tabindex="-1"
@@ -73,14 +72,16 @@
                       card.cardNumber.replace(
                         card.cardNumber.slice(2, 14),
                         "************"
-                      )
+                      ) +
+                        " " +
+                        card.cardholderName
                     }}
                     Numaralı Kart İle Ödeme Yapılacak
                   </div>
                   <div class="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      class="btn btn-danger"
                       data-bs-dismiss="modal"
                     >
                       Vazgeç
@@ -88,14 +89,14 @@
                     <button
                       (click)="payWithSavedCard(card)"
                       type="button"
-                      class="btn btn-primary"
+                      class="btn btn-success"
                     >
-                      Devam Et
+                      Onayla
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
         </ul>
       </div>
@@ -195,7 +196,7 @@
       </div>
       <div class="card-footer">
         <div class="row">
-          <button (click)="SaveCard()" class="btn my-btn">
+          <button (click)="pay()" class="btn my-btn">
             Ödeme Yap
             <strong class="text-warning"
               >({{ amountOfPayment | vatAdded: 18 | currency: "₺" }})

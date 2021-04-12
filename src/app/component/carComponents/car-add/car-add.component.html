@@ -1,5 +1,7 @@
+<div class="loader" *ngIf="dataLoaded == false"></div>
+
 <br />
-<div class="content">
+<div class="content" *ngIf="dataLoaded == true">
   <div class="row">
     <div class="col-md-6">
       <div class="card">

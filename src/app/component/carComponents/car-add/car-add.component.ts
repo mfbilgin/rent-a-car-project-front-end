@@ -27,6 +27,7 @@ export class CarAddComponent implements OnInit {
   imageAddForm: FormGroup;
   imageFiles: File[];
   savedCarId: number;
+  dataLoaded = false;
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
@@ -87,11 +88,13 @@ export class CarAddComponent implements OnInit {
   getAllBrand() {
     this.brandService.getBrand().subscribe((response) => {
       this.brands = response.data;
+      this.dataLoaded = true;
     });
   }
   getAllColor() {
     this.colorService.getColor().subscribe((response) => {
       this.colors = response.data;
+      this.dataLoaded = true;
     });
   }
 }

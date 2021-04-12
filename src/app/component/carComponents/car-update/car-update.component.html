@@ -1,4 +1,6 @@
-<div class="container">
+<div class="loader" *ngIf="dataLoaded == false"></div>
+<br />
+<div class="container" *ngIf="dataLoaded != false">
   <div class="row">
     <div class="col-md-3">
       <div class="card" style="width: 18rem">

@@ -19,6 +19,7 @@ export class UserDetailComponent implements OnInit {
   claims: OperationClaim[];
   updateUserForm: FormGroup;
   user: User[];
+  dataLoaded = false;
   constructor(
     private userService: UserService,
     private localStorageService: LocalStorageService,
@@ -46,6 +47,7 @@ export class UserDetailComponent implements OnInit {
       .getUserByMail(this.localStorageService.get('email'))
       .subscribe((response) => {
         this.user = response.data;
+        this.dataLoaded = true;
         response.data.forEach((data) => {
           this.localStorageService.add('firstName', data.firstName);
           this.localStorageService.add('lastName', data.lastName);

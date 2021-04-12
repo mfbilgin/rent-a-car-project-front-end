@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetailAndImagesDto } from 'src/app/models/car/carAndImagesDto';
@@ -68,5 +69,14 @@ export class CardetailComponent implements OnInit {
     } else {
       return 'carousel-item';
     }
+  }
+
+  setSpinnerClass() {
+    let spinners: string[] = [
+      'btn btn-warning',
+      'btn btn-primary',
+      'btn btn-secondary',
+    ];
+    return spinners;
   }
 }

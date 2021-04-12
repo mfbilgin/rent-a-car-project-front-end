@@ -24,6 +24,8 @@ export class PaymentComponent implements OnInit {
   amountOfPayment: number;
   savedCards: Card[];
 
+  dataLoaded = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private carDetailService: CarDetailService,
@@ -53,6 +55,7 @@ export class PaymentComponent implements OnInit {
       .getCarDetail(this.rental.carId)
       .subscribe((response) => {
         this.carDetail = response.data;
+        this.dataLoaded = true;
         this.paymentCalculator();
       });
   }
