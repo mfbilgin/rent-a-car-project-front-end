@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer/customer';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-customer-detail',
@@ -12,9 +13,15 @@ import { LocalStorageService } from 'src/app/services/localStorage/local-storage
   styleUrls: ['./customer-detail.component.css'],
 })
 export class CustomerDetailComponent implements OnInit {
-  customer: Customer[];
+  customer: Customer;
   dataLoaded = false;
   customerUpdateForm: FormGroup;
+
+  userId: number;
+  customerId: number;
+  companyName: string;
+  phoneNumber: string;
+  address: string;
   constructor(
     private customerService: CustomerService,
     private toastrService: ToastrService,
@@ -27,21 +34,23 @@ export class CustomerDetailComponent implements OnInit {
     this.getCustomeByUserId();
     this.createUpdateForm();
   }
-
+  getCustomerById(id: number) {
+    this.customerService.getCustomerByCustomerId(id).subscribe((response) => {
+      this.companyName = response.data.companyName;
+      this.address = response.data.address;
+      this.phoneNumber = response.data.phoneNumber;
+      this.customerId = response.data.customerId;
+      this.userId = response.data.userId;
+      this.createUpdateForm();
+    });
+  }
   createUpdateForm() {
     this.customerUpdateForm = this.formBuilder.group({
-      userId: [
-        this.localStorageService.get('userId'),
-        Validators.nullValidator,
-      ],
-      customerId: [
-        this.localStorageService.get('customerId'),
-        Validators.nullValidator,
-      ],
-      companyName: [
-        this.localStorageService.get('companyName'),
-        Validators.required,
-      ],
+      userId: [{ value: Number(this.userId), disabled: true }],
+      customerId: [{ value: Number(this.customerId), disabled: true }],
+      companyName: [this.companyName, Validators.nullValidator],
+      phoneNumber: [this.phoneNumber, Validators.required],
+      address: [this.address, Validators.nullValidator],
     });
   }
   getCustomeByUserId() {
@@ -49,25 +58,33 @@ export class CustomerDetailComponent implements OnInit {
       .getCustomerByUserId(Number(this.localStorageService.get('userId')))
       .subscribe((response) => {
         this.customer = response.data;
+        if (response.data != null) {
+          this.localStorageService.add('customerId', this.customer?.customerId);
+          this.getCustomerById(
+            Number(this.localStorageService.get('customerId'))
+          );
+          this.dataLoaded = true;
+        }
         this.dataLoaded = true;
-        response.data.forEach((customer) => {
-          this.localStorageService.add('customerId', customer.customerId);
-          this.localStorageService.add('companyName', customer.companyName);
-        });
       });
   }
 
   update() {
     if (this.customerUpdateForm.valid) {
-      let customerModel = Object.assign({}, this.customerUpdateForm.value);
+      let customerModel: Customer = Object.assign(
+        {},
+        this.customerUpdateForm.getRawValue()
+      );
       customerModel.userId = Number(customerModel.userId);
       customerModel.customerId = Number(customerModel.customerId);
-      this.toastrService.success('Güncellendi', 'Başarılı');
       this.customerService.update(customerModel).subscribe((response) => {
         this.toastrService.success(response.message, 'Başarılı');
+        setTimeout(function () {
+          location.reload();
+        }, 400);
       });
     } else {
-      this.toastrService.error('Lütfen Zorunlu Alanları Doldurun', 'Dikkat');
+      this.toastrService.error(environment.formInvalid, 'Dikkat');
     }
   }
 }

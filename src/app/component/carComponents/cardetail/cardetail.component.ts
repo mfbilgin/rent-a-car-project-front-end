@@ -2,6 +2,7 @@ import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetailAndImagesDto } from 'src/app/models/car/carAndImagesDto';
+import { CarDetail } from 'src/app/models/car/carDetails';
 import { OperationClaim } from 'src/app/models/user/operationClaim';
 import { User } from 'src/app/models/user/user';
 import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
@@ -26,26 +27,28 @@ export class CardetailComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) {}
 
-  carDetail: CarDetailAndImagesDto;
+  car: CarDetail;
+  images: string[];
+  imageBasePath = environment.baseUrl;
+  defaultImg = this.imageBasePath + 'images/default.jpg';
   user: User;
   claims: OperationClaim[];
   dataLoaded = false;
-  imageBasePath = environment.baseUrl;
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
-        this.getCarDetail(params['carId']);
+        this.getCarByCarId(params['carId']);
         this.getUserById();
         this.getClaims();
       }
     });
   }
-
-  getCarDetail(carId: number) {
-    this.carDetailService.getCarDetail(carId).subscribe((response) => {
-      this.carDetail = response.data;
-
-      this.dataLoaded = true;
+  getCarByCarId(carId: number) {
+    this.carDetailService.getCarDetailByCarId(carId).subscribe((response) => {
+      this.car = response.data;
+      this.images = this.car.imagePath;
+      this.dataLoaded = response.success;
     });
   }
   getClaims() {
@@ -71,12 +74,7 @@ export class CardetailComponent implements OnInit {
     }
   }
 
-  setSpinnerClass() {
-    let spinners: string[] = [
-      'btn btn-warning',
-      'btn btn-primary',
-      'btn btn-secondary',
-    ];
-    return spinners;
+  setSliderButtonClass(index: number) {
+    return index.toString();
   }
 }

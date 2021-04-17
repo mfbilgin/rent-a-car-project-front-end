@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
-import { CarDetails } from 'src/app/models/car/carDetails';
+import { CarDetail } from 'src/app/models/car/carDetails';
 import { Color } from 'src/app/models/color/color';
 import { BrandService } from 'src/app/services/brand/brand.service';
 import { CarDetailService } from 'src/app/services/car-detail/car-detail.service';
@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  cars: CarDetails[];
+  cars: CarDetail[];
   brands: Brand[];
   colors: Color[];
   dataLoaded = false;
@@ -40,7 +40,9 @@ export class CarComponent implements OnInit {
     this.getBrand();
     this.getColor();
     this.activatedRoute.params.subscribe((params) => {
-      if (params['brandId']) {
+      if (params['brandId'] && params['colorId']) {
+        this.getCarByBrandAndColorId(params['colorId'], params['brandId']);
+      } else if (params['brandId']) {
         this.getCarsByBrandId(params['brandId']);
       } else if (params['colorId']) {
         this.getCarsByColorId(params['colorId']);
@@ -69,6 +71,14 @@ export class CarComponent implements OnInit {
       this.cars = response.data;
       this.dataLoaded = true;
     });
+  }
+  getCarByBrandAndColorId(colorId: number, brandId: number) {
+    this.carDetailService
+      .getCarsByColorAndBrand(colorId, brandId)
+      .subscribe((response) => {
+        this.cars = response.data;
+        this.dataLoaded = true;
+      });
   }
 
   getColor() {
@@ -113,7 +123,11 @@ export class CarComponent implements OnInit {
     }
   }
   setRouterLink() {
-    if (this.currentBrandId) {
+    if (this.currentBrandId && this.currentColorId) {
+      return (
+        '/cars/brand/' + this.currentBrandId + '/color/' + this.currentColorId
+      );
+    } else if (this.currentBrandId) {
       return '/cars/brand/' + this.currentBrandId;
     } else if (this.currentColorId) {
       return '/cars/color/' + this.currentColorId;

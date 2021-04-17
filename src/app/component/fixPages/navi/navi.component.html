@@ -1,0 +1,121 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">RentACar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+      </ul>
+      <div *ngIf="dataLoaded == true">
+        <form class="d-flex" *ngIf="Authenticated == false">
+          <button class="btn btn-danger" routerLink="/register">
+            Kayıt Ol
+          </button>
+          <button class="btn btn-primary" type="submit" routerLink="/login">
+            Giriş Yap
+          </button>
+        </form>
+        <ul
+          class="navbar-nav me-auto mb-2 mb-lg-0"
+          *ngIf="Authenticated == true"
+        >
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-light btn mybtn"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ user?.firstName }}
+              {{ user?.lastName }} (Findex : {{ user?.findexPoint }})
+            </a>
+            <ul
+              *ngFor="let claim of claims"
+              class="dropdown-menu colorlb"
+              aria-labelledby="navbarDropdown"
+              style="background-color: rgb(230, 226, 173)"
+            >
+              <li class="colorl">
+                <a class="dropdown-item" routerLink="/profile"
+                  ><i class="fa fa-user"></i> Profil</a
+                >
+              </li>
+              <li class="colorl">
+                <a class="dropdown-item" routerLink="/cards"
+                  ><i class="fa fa-credit-card"></i> Kayıtlı Kartlarım</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+                <a class="dropdown-item" routerLink="/customers"
+                  ><i class="fa fa-users"></i> Müşteriler</a
+                >
+              </li>
+              <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+                <a class="dropdown-item" routerLink="/rentals"
+                  ><i class="bi bi-receipt"></i> Kiralamalar</a
+                >
+              </li>
+              <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+                <a class="dropdown-item" routerLink="/claim/add"
+                  ><i class="fa fa-plus-circle"></i> Yetki Ekle</a
+                >
+              </li>
+              <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+                <a class="dropdown-item" routerLink="/cars/add"
+                  ><i class="fa fa-plus-circle"></i> Araç Ekle</a
+                >
+              </li>
+
+              <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+                <a class="dropdown-item" routerLink="/brands/add"
+                  ><i class="fa fa-plus-circle"></i> Marka Ekle</a
+                >
+              </li>
+              <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+                <a class="dropdown-item" routerLink="/colors/add"
+                  ><i class="fa fa-plus-circle"></i> Renk Ekle</a
+                >
+              </li>
+
+              <li class="nav-item" *ngIf="claim.operationClaimName == 'admin'">
+                <a class="dropdown-item" routerLink="/image/add"
+                  ><i class="fa fa-upload" aria-hidden="true"></i> Resim
+                  Yükle</a
+                >
+              </li>
+              <li>
+                <hr
+                  class="dropdown-divider"
+                  *ngIf="claim.operationClaimName == 'admin'"
+                />
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="logOut()"
+                  ><i class="fa fa-sign-out" aria-hidden="true"></i> Çıkış
+                  Yap</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<br />
+<br />
+<br />

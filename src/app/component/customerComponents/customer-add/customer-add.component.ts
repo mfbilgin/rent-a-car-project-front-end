@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
@@ -15,7 +16,8 @@ export class CustomerAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private customerService: CustomerService,
     private toastrService: ToastrService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,7 +26,9 @@ export class CustomerAddComponent implements OnInit {
 
   createCustomerAddForm() {
     this.customerAddForm = this.formBuilder.group({
-      companyName: ['', Validators.required],
+      companyName: ['', Validators.nullValidator],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.nullValidator],
       userId: [this.localStorageService.get('userId'), Validators.required],
     });
   }
@@ -33,14 +37,17 @@ export class CustomerAddComponent implements OnInit {
     if (this.customerAddForm.valid) {
       let customerModel = Object.assign({}, this.customerAddForm.value);
       customerModel.userId = Number(customerModel.userId);
-      this.toastrService.success('Başarılı');
       this.customerService.add(customerModel).subscribe(
         (response) => {
           console.log(response);
           this.toastrService.success(response.message, 'Başarılı');
+          this.router.navigate(['profile']);
+          setTimeout(function () {
+            location.reload();
+          }, 400);
         },
         (responseError) => {
-          if (responseError.error.ValidationErrors.length > 0) {
+          if (responseError.error.ValidationErrors?.length > 0) {
             for (
               let i = 0;
               i < responseError.error.ValidationErrors.length;

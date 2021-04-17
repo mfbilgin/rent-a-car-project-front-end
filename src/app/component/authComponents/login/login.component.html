@@ -1,0 +1,44 @@
+<head>
+  <meta
+    name="google-signin-client_id"
+    content="700381518298-od2mve5s48t7s1mra3m9vs1b36dp0pa6.apps.googleusercontent.com.apps.googleusercontent.com"
+  />
+</head>
+<body>
+  <form [formGroup]="loginForm" class="box" method="post">
+    <h1><i class="fa fa-sign-in"></i> Giriş Yapınız</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      formControlName="email"
+      placeholder="&#xf0e0; Mail Adresi"
+      style="font-family: Arial, FontAwesome"
+    />
+
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      formControlName="password"
+      placeholder="&#xf023;   Parola"
+      style="font-family: Arial, FontAwesome"
+    />
+
+    <input type="submit" (click)="login()" value="Login" />
+    <p
+      style="color: white; opacity: 0.8; margin-left: 10px"
+      routerLink="/register"
+    >
+      Henüz Bir Hesabınız Yok Mu?
+    </p>
+    <p
+      style="color: white; opacity: 0.5; margin-left: 8px"
+      routerLink="/forgotPassword"
+    >
+      Şifrenizi mi unuttunuz?
+    </p>
+  </form>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>

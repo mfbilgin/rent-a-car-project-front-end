@@ -32,9 +32,39 @@
               class="form-control"
               id="companyName"
               formControlName="companyName"
-              placeholder="Şirket Adı"
+              placeholder=" "
             />
-            <label for="companyName">Şirket Adı</label>
+            <label for="companyName"
+              ><i class="fa fa-building-o" aria-hidden="true"></i> Şirket
+              Adı</label
+            >
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              maxlength="11"
+              class="form-control"
+              id="phoneNumber"
+              formControlName="phoneNumber"
+              placeholder=" "
+            />
+            <label for="phoneNumber"
+              ><i class="fa fa-phone"></i> Telefon Numarası*</label
+            >
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              formControlName="address"
+              placeholder=" "
+            />
+            <label for="address"
+              ><i class="fa fa-address-card-o" aria-hidden="true"></i>
+              Adres</label
+            >
           </div>
         </form>
       </div>
@@ -45,4 +75,5 @@
       </div>
     </div>
   </div>
+  <p class="text-danger">*Zorunlu Alan</p>
 </div>

@@ -51,6 +51,7 @@ export class CarAddComponent implements OnInit {
       dailyPrice: ['', Validators.required],
       descript: ['', Validators.required],
       brandName: ['', Validators.required],
+      minFindex: ['', Validators.required],
     });
   }
 
@@ -60,11 +61,11 @@ export class CarAddComponent implements OnInit {
       this.carService.add(productModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
-          this.savedCarId = response.data.carId;
+          this.savedCarId = response?.data?.carId;
           this.router.navigate(['cars']);
           setTimeout(function () {
             location.reload();
-          }, 600);
+          }, 400);
         },
         (responseError) => {
           if (responseError.error.ValidationErrors.length > 0) {

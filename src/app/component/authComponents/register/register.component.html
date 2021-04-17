@@ -1,0 +1,50 @@
+<body>
+  <form
+    [formGroup]="registerForm"
+    class="box"
+    action="https://www.ansoriweb.com/2020/01/cara-membuat-login-form-keren-dengan-html-css.html"
+    method="post"
+  >
+    <h1><i class="fa fa-user-plus" aria-hidden="true"></i> Kayıt Olunuz</h1>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      formControlName="firstName"
+      placeholder="&#xf039; İsim"
+      style="font-family: Arial, FontAwesome"
+    />
+
+    <input
+      type="text"
+      class="form-control"
+      id="lastName"
+      formControlName="lastName"
+      placeholder="&#xf039; Soyisim"
+      style="font-family: Arial, FontAwesome"
+    />
+
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      formControlName="email"
+      placeholder="&#xf0e0; Mail Adresi"
+      style="font-family: Arial, FontAwesome"
+    />
+
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      formControlName="password"
+      placeholder="&#xf023;   Parola"
+      style="font-family: Arial, FontAwesome"
+    />
+
+    <input type="submit" (click)="register()" value="Login" />
+    <p style="color: white; opacity: 0.5" routerLink="/register">
+      Henüz Bir Hesabınız Yok Mu?
+    </p>
+  </form>
+</body>

@@ -3,11 +3,6 @@
 <div class="row">
   <div class="col-md-12" *ngIf="dataLoaded == true">
     <div class="row">
-      <div class="col-md-2">
-        <button routerLink="/cars" type="button" class="btn btn-primary mybtn">
-          Tüm Araçlar
-        </button>
-      </div>
       <div class="col-md-3">
         <select
           [(ngModel)]="currentBrandId"
@@ -25,15 +20,6 @@
             {{ brand.brandName }}
           </option>
         </select>
-      </div>
-      <div class="col-md-2">
-        <button
-          [routerLink]="setRouterLink()"
-          type="button"
-          class="btn btn-primary mybtn"
-        >
-          Filtrele
-        </button>
       </div>
       <div class="col-md-3">
         <select
@@ -53,13 +39,23 @@
           </option>
         </select>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <button
           [routerLink]="setRouterLink()"
           type="button"
           class="btn btn-primary mybtn"
         >
           Filtrele
+        </button>
+      </div>
+      <div class="col-md-2">
+        <button
+          routerLink="/cars"
+          type="button"
+          class="btn btn-danger"
+          style="height: 100%"
+        >
+          Filtreyi Temizle
         </button>
       </div>
     </div>
@@ -77,6 +73,7 @@
       placeholder="Araç Ara"
     />
   </div>
+
   <div
     class="card"
     routerLink="/cars/cardetail/{{ car.carId }}"
@@ -85,21 +82,19 @@
     <div class="card-body">
       <img
         class="card-img"
-        *ngIf="car.imagePath == null"
-        src="{{ imageDefaultPath }}"
-        alt="{{ car.carId }}"
-        style="width: 100%"
-      />
-      <img
-        class="card-img"
-        *ngIf="car.imagePath != null"
-        src="{{ baseUrl + car.imagePath }}"
+        [src]="
+          car.imagePath.length !== 0
+            ? baseUrl + car.imagePath[0]
+            : imageDefaultPath
+        "
         alt="{{ car.carId }}"
         style="width: 100%; height: 225px"
       />
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ car.description }}</h5>
+      <h5 class="card-title text-light">
+        {{ car.description }}
+      </h5>
     </div>
     <div
       class="card-body"
@@ -110,17 +105,40 @@
       "
     >
       <ul class="list-group list-group-flush">
-        <li class="list-group-item my-li">Marka : {{ car.brandName }}</li>
-        <li class="list-group-item my-li">Renk : {{ car.colorName }}</li>
-        <li class="list-group-item my-li">Model Yılı : {{ car.modelYear }}</li>
         <li class="list-group-item my-li">
-          Günlük Fiyat : {{ car.dailyPrice }}
+          <b> Marka : {{ car.brandName }}</b>
         </li>
         <li class="list-group-item my-li">
-          KDV'li Günlük Fiyat : {{ car.dailyPrice | vatAdded: 18 }}
+          <b> Renk : {{ car.colorName }}</b>
         </li>
-        <li class="list-group-item my-li">Model Yılı : {{ car.modelYear }}</li>
+        <li class="list-group-item my-li">
+          <b> Model Yılı : {{ car.modelYear }}</b>
+        </li>
+        <li class="list-group-item my-li">
+          <b> Günlük Fiyat : {{ car.dailyPrice }}</b>
+        </li>
+        <li class="list-group-item my-li">
+          <b> Gereken Findex Puanı : {{ car.minFindex }}</b>
+        </li>
+
+        <li class="list-group-item my-li">
+          <b> KDV'li Günlük Fiyat : {{ car.dailyPrice | vatAdded: 18 }}</b>
+        </li>
+        <li class="list-group-item my-li">
+          <b> Model Yılı : {{ car.modelYear }}</b>
+        </li>
       </ul>
+    </div>
+  </div>
+  <div *ngIf="cars?.length < 1">
+    <div class="alert alert-success" role="alert">
+      <h4 style="text-align: center" class="alert-heading">
+        Bu Filtreye Uygun Bir Araç Bulunamadı
+      </h4>
+      <hr />
+      <p style="text-align: center" class="mb-0">
+        Lütfen Farklı Bir Filtreyle Tekrar Deneyiniz
+      </p>
     </div>
   </div>
 </div>

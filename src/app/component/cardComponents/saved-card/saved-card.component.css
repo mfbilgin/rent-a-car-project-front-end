@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;500&display=swap");
+
+.credit-card {
+  position: relative;
+  max-width: 550px;
+  min-width: 550px;
+  margin: 50px auto;
+  min-height: 300px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+  background: linear-gradient(45deg, #fffb09, #fc00ff, #00fffc);
+  justify-content: space-between;
+  font-family: "Dosis", sans-serif;
+  overflow: hidden;
+}
+
+.credit-card:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  color: rgb(249 249 249 / 10%);
+  background: linear-gradient(135deg, currentColor 25%, transparent 25%) -100px 0,
+    linear-gradient(225deg, currentColor 25%, transparent 25%) -100px 0,
+    linear-gradient(315deg, currentColor 25%, transparent 25%),
+    linear-gradient(45deg, currentColor 25%, transparent 25%);
+  background-size: calc(2 * 100px) calc(2 * 100px);
+}
+
+.logo {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 72px;
+  display: flex;
+  align-self: flex-end;
+  filter: drop-shadow(1px 1px 0 #555);
+  z-index: 1;
+  background: linear-gradient(-240deg, #f0ec0e, #fc00ff, #00fffc);
+}
+
+.name-and-expiry {
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  color: #fff;
+  font-size: 22px;
+  letter-spacing: 3px;
+  filter: drop-shadow(1px 0px 1px #555);
+  text-transform: uppercase;
+}
+
+.numbers {
+  font-size: 36px;
+  letter-spacing: 7px;
+  text-align: center;
+  color: #fff;
+  filter: drop-shadow(1px 0px 1px #555);
+  z-index: 1;
+}
+@import url("https://font.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: linear-gradient(45deg, #8500ff, #5acaff);
+  height: 100vh;
+}
+#container {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #151729;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+#container .content {
+  max-width: 600px;
+  text-align: center;
+}
+#container .content h2 {
+  font-size: 18vw;
+  color: #fff;
+  line-height: 1em;
+}
+#container .content h4 {
+  position: relative;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #111;
+  background: #fff;
+  font-weight: 300;
+  padding: 10px 20px;
+  display: inline-block;
+}
+#container .content p {
+  color: #fff;
+  font-size: 1.2em;
+}
+#container .content a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #ff0562;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 25px;
+  border-radius: 25px;
+  border-bottom: 4px solid #d00d56;
+}
+.btn-delete {
+  float: right;
+  background: linear-gradient(-240deg, #1af3ef, #e710eb, #e7e416);
+  width: 40px;
+  height: 40px;
+  color: whitesmoke;
+  position: relative;
+  right: -10px;
+  top: -20px;
+  z-index: 1;
+  border-radius: 4px;
+  border: 1px solid rgb(156, 6, 6);
+}

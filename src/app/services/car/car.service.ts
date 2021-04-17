@@ -2,21 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Car } from 'src/app/models/car/car';
-import { CarDetails } from 'src/app/models/car/carDetails';
+import { CarDetail } from 'src/app/models/car/carDetails';
 
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CarService {
   constructor(private httpClient: HttpClient) {}
-  apiUrl = 'https://localhost:44380/api/';
+  apiUrl = environment.apiUrl;
 
-  add(car: CarDetails): Observable<SingleResponseModel<CarDetails>> {
-    return this.httpClient.post<SingleResponseModel<CarDetails>>(
+  add(car: CarDetail): Observable<SingleResponseModel<CarDetail>> {
+    return this.httpClient.post<SingleResponseModel<CarDetail>>(
       this.apiUrl + 'cars/add',
       car
     );

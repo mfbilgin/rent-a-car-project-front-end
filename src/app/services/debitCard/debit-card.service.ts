@@ -21,14 +21,15 @@ export class DebitCardService {
     );
   }
   pay(
-    cardNumber: string,
+    debitCard: DebitCard,
     rental: Rental,
     amount: Number
   ): Observable<ResponseModel> {
+    debugger;
     return this.httpClient.post<ResponseModel>(
       environment.apiUrl + 'debitcards/addrental',
       {
-        cardNumber: cardNumber,
+        debitCard: debitCard,
         rental: rental,
         amount: amount,
       }

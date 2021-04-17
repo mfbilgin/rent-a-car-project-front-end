@@ -21,6 +21,13 @@ export class SavedCardService {
     );
   }
 
+  deleteCard(card: Card) {
+    return this.httpClient.post<ResponseModel>(
+      environment.apiUrl + 'saveCard/delete',
+      card
+    );
+  }
+
   getCardByUserId(userId: number): Observable<ListResponseModel<Card>> {
     return this.httpClient.get<ListResponseModel<Card>>(
       environment.apiUrl + 'saveCard/getbyuserid?userId=' + userId

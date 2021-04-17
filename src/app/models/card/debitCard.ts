@@ -1,9 +1,9 @@
 export interface DebitCard {
-  debitCardId: number;
+  debitCardId?: number;
   cardholderName: string;
-  carholderLastName: string;
+  cardholderLastName: string;
   cardNumber: string;
   cvv: string;
   expirationDate: string;
-  balance: Number;
+  balance?: Number;
 }

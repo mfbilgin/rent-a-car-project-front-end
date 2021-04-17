@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { Image } from 'src/app/models/image/image';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageService {
-  apiUrl = 'https://localhost:44380/api/';
+  apiUrl = environment.apiUrl;
   constructor(private httpClient: HttpClient) {}
 
   getImagesByCarId(carId: number): Observable<ListResponseModel<Image>> {

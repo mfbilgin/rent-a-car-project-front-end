@@ -13,6 +13,7 @@ import { ImageService } from 'src/app/services/image/image.service';
 })
 export class CarDeleteComponent implements OnInit {
   car: Car;
+  carId: number;
   images: Image[];
   imageId: number[];
   dataLoaded = false;
@@ -27,7 +28,9 @@ export class CarDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
-        this.getCarById(params['carId']);
+        this.carId = Number(params['carId']);
+        this.getCarById(this.carId);
+        this.getImageByCarId();
       }
     });
   }
@@ -40,18 +43,21 @@ export class CarDeleteComponent implements OnInit {
   }
 
   getImageByCarId() {
-    this.imageService.getImagesByCarId(this.car.carId).subscribe((response) => {
-      if (response.data.length > 0) {
-        console.log(response.data);
-        this.toastrService.info(
-          'Öncelikle aracın resimlerini silmelisiniz',
-          'Dikkat'
-        );
-        this.router.navigate(['image/delete']);
-        setTimeout(function () {
-          location.reload();
-        }, 1000);
-      }
+    this.imageService.getImagesByCarId(this.carId).subscribe((response) => {
+      this.images = response.data;
+      this.dataLoaded = true;
+    });
+  }
+
+  deleteImageandCar() {
+    this.imageService.getImagesByCarId(this.carId).subscribe((response) => {
+      this.images = response.data;
+      this.images?.forEach((image) => {
+        this.imageService.delete(Number(image.id)).subscribe((response) => {
+          this.toastrService.success('Resim Silindi', 'Başarılı');
+          this.delete();
+        });
+      });
     });
   }
 
@@ -61,7 +67,7 @@ export class CarDeleteComponent implements OnInit {
       this.router.navigate(['cars']);
       setTimeout(function () {
         location.reload();
-      }, 1000);
+      }, 600);
     });
   }
 }

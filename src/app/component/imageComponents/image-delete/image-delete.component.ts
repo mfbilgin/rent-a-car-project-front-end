@@ -55,7 +55,7 @@ export class ImageDeleteComponent implements OnInit {
             this.router.navigate(['cars']);
             setTimeout(function () {
               location.reload();
-            }, 600);
+            }, 400);
           });
         });
       });

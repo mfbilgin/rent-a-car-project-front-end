@@ -10,12 +10,15 @@
   border: none;
 }
 
-.mybtn:hover {
+.mybtn:hover,
+.btn:hover {
   border-radius: 6px;
   transform: scale(1.05);
 }
+
 .card:hover {
   transform: scale(1.05);
+  z-index: 2;
 }
 .card {
   display: grid;
