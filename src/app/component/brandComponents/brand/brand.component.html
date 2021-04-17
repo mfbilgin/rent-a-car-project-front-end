@@ -1,4 +1,6 @@
-<p>
+<div class="loader" *ngIf="dataLoaded == false"></div>
+
+<p *ngIf="dataLoaded != false">
   <a
     class="btn btn-primary changea"
     data-bs-toggle="collapse"
@@ -10,7 +12,7 @@
   >
 </p>
 
-<div class="row">
+<div class="row" *ngIf="dataLoaded != false">
   <div class="col">
     <div class="collapse multi-collapse" id="multiCollapseExample1">
       <div class="mb-3">
@@ -22,11 +24,7 @@
           placeholder="Marka Ara"
         />
       </div>
-      <ul
-        class="list-group"
-        *ngIf="dataLoaded != false"
-        style="text-align: center"
-      >
+      <ul class="list-group" style="text-align: center">
         <li
           routerLink="/cars"
           [class]="getAllBrandClass()"

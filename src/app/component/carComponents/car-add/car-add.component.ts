@@ -27,6 +27,7 @@ export class CarAddComponent implements OnInit {
   imageAddForm: FormGroup;
   imageFiles: File[];
   savedCarId: number;
+  dataLoaded = false;
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
@@ -50,6 +51,7 @@ export class CarAddComponent implements OnInit {
       dailyPrice: ['', Validators.required],
       descript: ['', Validators.required],
       brandName: ['', Validators.required],
+      minFindex: ['', Validators.required],
     });
   }
 
@@ -59,11 +61,11 @@ export class CarAddComponent implements OnInit {
       this.carService.add(productModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
-          this.savedCarId = response.data.carId;
+          this.savedCarId = response?.data?.carId;
           this.router.navigate(['cars']);
           setTimeout(function () {
             location.reload();
-          }, 600);
+          }, 400);
         },
         (responseError) => {
           if (responseError.error.ValidationErrors.length > 0) {
@@ -87,11 +89,13 @@ export class CarAddComponent implements OnInit {
   getAllBrand() {
     this.brandService.getBrand().subscribe((response) => {
       this.brands = response.data;
+      this.dataLoaded = true;
     });
   }
   getAllColor() {
     this.colorService.getColor().subscribe((response) => {
       this.colors = response.data;
+      this.dataLoaded = true;
     });
   }
 }

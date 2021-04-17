@@ -1,2 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 7%;
+  border-top: 16px solid #007bff;
+  border-right: 16px solid #28a745;
+  border-bottom: 16px solid #dc3545;
+  border-left: 16px solid #ffc107;
+  background-color: rgb(255, 200, 200);
+  position: absolute;
+  top: 40%;
+  right: 755px;
+  width: 90px;
+  height: 90px;
+  -webkit-animation: spin 0.1s linear infinite;
+  animation: spin 3s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

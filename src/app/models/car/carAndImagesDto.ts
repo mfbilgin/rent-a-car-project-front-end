@@ -1,6 +1,6 @@
-import { CarDetails } from './carDetails';
+import { CarDetail } from './carDetails';
 import { Image } from 'src/app/models/image/image';
 export interface CarDetailAndImagesDto {
-  car: CarDetails;
+  car: CarDetail;
   carImages: Image[];
 }

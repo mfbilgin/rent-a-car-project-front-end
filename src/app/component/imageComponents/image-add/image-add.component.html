@@ -1,4 +1,5 @@
-<div class="container">
+<div class="loader" *ngIf="dataLoaded == false"></div>
+<div class="container" *ngIf="dataLoaded != false">
   <div class="row">
     <div class="col-md-3">
       <div class="card" style="width: 18rem">
@@ -12,20 +13,25 @@
     </div>
     <div class="col-md-6">
       <div class="card">
+        <p style="font-size: 7px; opacity: 0.7">
+          *Son seçilen resim ana sayfada görüntülenecek resimdir
+        </p>
         <div class="car-body">
           <form [formGroup]="imageAddForm">
             <div class="mb-3">
               <div class="form-group">
                 <input
+                  accept=".jpg,.gif,.png,.jpeg,.ico,.svg,.tiff,.psd,.pdf,.eps"
                   style="width: 100%"
                   formControlName="file"
                   type="file"
                   (change)="uploadFile($event)"
+                  multiple
                 />
                 <br />
               </div>
             </div>
-            <div class="mb-3">
+            <div *ngIf="carId == null" class="mb-3">
               <div class="form-group">
                 <br />
                 <input
@@ -34,6 +40,19 @@
                   formControlName="carId"
                   type="number"
                   id="carId"
+                />
+              </div>
+            </div>
+            <div *ngIf="carId != null" class="mb-3">
+              <div class="form-group">
+                <br />
+                <input
+                  style="width: 100%"
+                  placeholder="{{ carId }}"
+                  formControlName="carId"
+                  type="number"
+                  id="carId"
+                  readonly
                 />
               </div>
             </div>

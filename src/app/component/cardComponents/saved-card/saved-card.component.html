@@ -1,0 +1,38 @@
+<div class="loader" *ngIf="dataLoaded == false"></div>
+<div *ngIf="cards?.length > 0 && dataLoaded == true">
+  <div class="row mb-3 mt-2" *ngFor="let card of cards">
+    <div class="credit-card">
+      <div>
+        <button (click)="deleteCard(card)" class="btn-delete">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+      <img
+        src="https://raw.githubusercontent.com/ismailvtl/ismailvtl.github.io/3d5c5c3d591463bfba973d10ebfadd9eb063dbbc/images/visa-logo.png"
+        class="logo"
+      />
+      <div class="numbers">{{ card.cardNumber }}</div>
+      <div class="name-and-expiry">
+        <span>{{ card.cardholderName }} {{ card.cardholderLastName }}</span>
+        <span>{{ card.expirationDate }}</span>
+      </div>
+    </div>
+
+    <hr />
+  </div>
+</div>
+<div
+  style="position: relative; top: 50px"
+  *ngIf="cards?.length < 1 && dataLoaded == true"
+>
+  <div class="alert alert-success" role="alert">
+    <h4 style="text-align: center; height: 75px" class="alert-heading">
+      Kayıtlı Kartınız Bulunamadı
+    </h4>
+
+    <p style="text-align: center; height: 50px" class="mb-0">
+      Sonraki alışverişinizde kartımı kaydet kısmını aktif ederek kart kayıt
+      edebilirsiniz
+    </p>
+  </div>
+</div>

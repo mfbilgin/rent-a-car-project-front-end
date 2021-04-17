@@ -6,16 +6,23 @@ import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 import { OperationClaim } from 'src/app/models/user/operationClaim';
 import { User } from 'src/app/models/user/user';
+import { UserOperationClaim } from 'src/app/models/user/userOperationClaim';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl = 'https://localhost:44380/api/';
+  apiUrl = environment.apiUrl;
   constructor(private httpClient: HttpClient) {}
 
-  getUserByMail(email: string) {
+  getAllUser() {
     return this.httpClient.get<ListResponseModel<User>>(
+      this.apiUrl + 'users/getall'
+    );
+  }
+  getUserByMail(email: string) {
+    return this.httpClient.get<SingleResponseModel<User>>(
       this.apiUrl + 'users/getbyemail?email=' + email
     );
   }
@@ -41,6 +48,13 @@ export class UserService {
   getUserClaims(userId: number): Observable<ListResponseModel<OperationClaim>> {
     return this.httpClient.get<ListResponseModel<OperationClaim>>(
       this.apiUrl + 'users/getclaims?userId=' + userId
+    );
+  }
+
+  addUserOperationClaim(claim: UserOperationClaim) {
+    return this.httpClient.post<ResponseModel>(
+      this.apiUrl + 'userOperationClaims/add',
+      claim
     );
   }
 }

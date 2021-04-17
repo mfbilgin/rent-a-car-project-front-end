@@ -1,5 +1,7 @@
+<div class="loader" *ngIf="dataLoaded == false"></div>
+
 <br />
-<div class="content">
+<div class="content" *ngIf="dataLoaded == true">
   <div class="row">
     <div class="col-md-6">
       <div class="card">
@@ -49,6 +51,16 @@
                 placeholder=" "
               />
               <label for="dailyPrice">Günlük Fiyat (KDV* Hariç)</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="number"
+                class="form-control"
+                id="minFindex"
+                formControlName="minFindex"
+                placeholder="Minimum Findex"
+              />
+              <label for="colorId">Minimum Findex</label>
             </div>
             <div class="form-floating mb-3">
               <input

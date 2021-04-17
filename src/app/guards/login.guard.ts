@@ -14,11 +14,7 @@ import { AuthService } from '../services/auth/auth.service';
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
-  constructor(
-    private authService: AuthService,
-    private toastrService: ToastrService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -31,10 +27,6 @@ export class LoginGuard implements CanActivate {
       return true;
     } else {
       this.router.navigate(['login']);
-      this.toastrService.info(
-        'Bu işlem için önce giriş yapmalısınız',
-        'Dikkat'
-      );
       return false;
     }
   }

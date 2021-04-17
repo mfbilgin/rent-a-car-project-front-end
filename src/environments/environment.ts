@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseUrl: 'https://localhost:44380/',
   apiUrl: 'https://localhost:44380/api/',
+  formInvalid: 'Lütfen Zorunlu Alanları Doldurun',
 };
 
 /*

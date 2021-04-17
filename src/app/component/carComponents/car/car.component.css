@@ -10,12 +10,15 @@
   border: none;
 }
 
-.mybtn:hover {
+.mybtn:hover,
+.btn:hover {
   border-radius: 6px;
   transform: scale(1.05);
 }
+
 .card:hover {
   transform: scale(1.05);
+  z-index: 2;
 }
 .card {
   display: grid;
@@ -24,11 +27,12 @@
   background: #3f3f3f;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   text-align: center;
-  width: 300px;
   height: 380px;
   transition: 0.5s ease;
   cursor: pointer;
   margin-top: 10px;
+  margin: 7px;
+  width: 24rem;
 }
 
 .card {
@@ -37,10 +41,11 @@
   background: #3f3f3f;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   text-align: center;
-  width: 300px;
   height: 100%;
   cursor: pointer;
   margin-top: 7px;
+  margin: 7px;
+  width: 24rem;
 }
 .card-image {
   grid-area: image;

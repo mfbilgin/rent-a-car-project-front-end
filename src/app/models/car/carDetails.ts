@@ -1,4 +1,4 @@
-export interface CarDetails {
+export interface CarDetail {
   carId: number;
   brandName: string;
   colorName: number;
@@ -7,5 +7,5 @@ export interface CarDetails {
   description: string;
   status: boolean;
   minFindex: number;
-  imagePath: string;
+  imagePath: string[];
 }

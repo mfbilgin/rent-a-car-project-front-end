@@ -1,0 +1,39 @@
+<div class="loader" *ngIf="dataLoaded == false"></div>
+<h3 class="text-danger" style="text-align: center" *ngIf="dataLoaded != false">
+  Kiralama Listesi
+</h3>
+<table class="table" style="text-align: center">
+  <thead *ngIf="dataLoaded != false">
+    <tr style="text-align: left">
+      <th>Id</th>
+      <th>Marka</th>
+      <th>Kiralayan İsmi</th>
+      <th>Kiralama Tarihi</th>
+      <th>Teslim Tarihi</th>
+      <th>Açıklama</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rental of rentals" style="text-align: left">
+      <td>{{ rental.rentalId }}</td>
+      <td>{{ rental.brandName }}</td>
+      <td>{{ rental.userName }}</td>
+      <td>{{ rental.rentDate.toString().slice(0, 10) }}</td>
+      <td *ngIf="rental.returnDate == null">Teslim Edilmemiş</td>
+      <td *ngIf="rental.returnDate != null">
+        {{ rental.returnDate.toString().slice(0, 10) }}
+      </td>
+      <td>{{ rental.descript }}</td>
+      <td>
+        <button
+          (click)="deleteRental(rental.rentalId)"
+          style="width: 100%"
+          class="btn btn-warning"
+        >
+          <i class="bi bi-trash2-fill"></i>Sil
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

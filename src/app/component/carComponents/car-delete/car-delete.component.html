@@ -1,3 +1,5 @@
+<div class="loader" *ngIf="dataLoaded == false"></div>
+
 <!-- Button trigger modal -->
 <button
   type="button"
@@ -5,7 +7,6 @@
   style="width: 100%"
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
-  (click)="getImageByCarId()"
 >
   <i class="bi bi-trash2"></i>
   Sil
@@ -35,7 +36,21 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Vazgeç
         </button>
-        <button (click)="delete()" type="button" class="btn btn-danger">
+        <button
+          *ngIf="images?.length > 0"
+          (click)="deleteImageandCar()"
+          type="button"
+          class="btn btn-danger"
+        >
+          <i class="bi bi-trash"></i>Sil
+        </button>
+
+        <button
+          *ngIf="images?.length == 0"
+          (click)="delete()"
+          type="button"
+          class="btn btn-danger"
+        >
           <i class="bi bi-trash"></i>Sil
         </button>
       </div>

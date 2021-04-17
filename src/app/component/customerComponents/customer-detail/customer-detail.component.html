@@ -1,5 +1,6 @@
-<div class="container">
-  <div class="row" *ngIf="customer?.length > 0">
+<div class="loader" *ngIf="dataLoaded == false"></div>
+<div class="container" *ngIf="dataLoaded != false">
+  <div class="row" *ngIf="customer != null">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
@@ -7,7 +8,7 @@
             Müşteri Bilgileri
           </h5>
         </div>
-        <div class="card-body" *ngFor="let customer of customer">
+        <div class="card-body">
           <form [formGroup]="customerUpdateForm">
             <div class="mb-3">
               <label for="userId" class="form-label">Kullanıcı Id</label>
@@ -16,8 +17,6 @@
                 class="form-control"
                 formControlName="userId"
                 id="userId"
-                placeholder="{{ customer.userId }}"
-                readonly
               />
             </div>
             <div class="mb-3">
@@ -27,8 +26,6 @@
                 class="form-control"
                 formControlName="customerId"
                 id="customerId"
-                placeholder="{{ customer.customerId }}"
-                readonly
               />
             </div>
             <div class="mb-3">
@@ -38,8 +35,29 @@
                 class="form-control"
                 formControlName="companyName"
                 id="companyName"
-                placeholder="{{ customer.companyName }}"
               />
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label"
+                >Telefon Numarası*</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                formControlName="phoneNumber"
+                id="phoneNumber"
+                maxlength="11"
+                minlength="10"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Adres</label>
+              <textarea
+                class="form-control"
+                formControlName="address"
+                id="address"
+                rows="3"
+              ></textarea>
             </div>
           </form>
         </div>
@@ -54,7 +72,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="customer?.length == 0">
+  <div *ngIf="customer == null">
     <app-customer-null></app-customer-null>
   </div>
 </div>
